@@ -1,24 +1,64 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tweet</title>
+    <style>
+        p, ul {
+            margin: 0;
+        }
+
+        .tweet {
+            display: flex;
+            align-items: flex-start;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .avatar {
+            margin-right: 10px;
+            width: 48px;
+            border-radius: 50%;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .author-meta, p {
+            margin-bottom: 1em;
+        }
+
+        .actions {
+            display: flex;
+            padding: 0;
+        }
+
+        .actions li {
+            list-style: none;
+            margin-right: 10px;
+        }
+    </style>
 </head>
+
 <body>
-    <article>
-        <img src="http://www.gravatar.com/avatar" alt="Name">
-        <div>
-            <span>@handle</span>
-            <span>Name</span>
-            <span>3h ago</span>
+    <article class="tweet">
+        <img class="avatar" src="http://www.gravatar.com/avatar" alt="Name">
+        <div class="content">
+            <div class="author-meta">
+                <span class="handle">@handle</span>
+                <span class="name">Name</span>
+                <span class="time">3h ago</span>
+            </div>
+            <p>Some interesting tweet body.</p>
+            <ul class="actions">
+                <li><button>Reply</button></li>
+                <li><button>Retweet</button></li>
+                <li><button>Like</button></li>
+                <li><button>...</button></li>
+            </ul>
         </div>
-        <p>Some interesting tweet body</p>
-        <ul>
-            <li><button>Reply</button></li>
-            <li><button>Retweet</button></li>
-            <li><button>Like</button></li>
-            <li><button>...</button></li>
-        </ul>
     </article>
-    
+
 </body>
