@@ -14,6 +14,8 @@
             align-items: flex-start;
             border: 1px solid #ccc;
             padding: 10px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 14px;
         }
 
         .avatar {
@@ -28,6 +30,19 @@
 
         .author-meta, p {
             margin-bottom: 1em;
+        }
+
+        .name {
+            font-weight: 600;
+        }
+
+        .handle::after{
+            content: " \00b7";
+        }
+
+        .handle,
+        .time {
+            color: #657786;
         }
 
         .actions {
@@ -47,8 +62,8 @@
         <img class="avatar" src="http://www.gravatar.com/avatar" alt="Name">
         <div class="content">
             <div class="author-meta">
-                <span class="handle">@handle</span>
                 <span class="name">Name</span>
+                <span class="handle">@handle</span>
                 <span class="time">3h ago</span>
             </div>
             <p>Some interesting tweet body.</p>
