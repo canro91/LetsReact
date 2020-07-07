@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tweet</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
     <style>
-        p, ul {
+        p,
+        ul {
             margin: 0;
         }
 
@@ -28,7 +31,8 @@
             flex: 1;
         }
 
-        .author-meta, p {
+        .author-meta,
+        p {
             margin-bottom: 1em;
         }
 
@@ -36,7 +40,7 @@
             font-weight: 600;
         }
 
-        .handle::after{
+        .handle::after {
             content: " \00b7";
         }
 
@@ -54,6 +58,17 @@
             list-style: none;
             margin-right: 10px;
         }
+        
+        .actions button {
+            border: none;
+            color: #657786;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .actions button:hover{
+            color: #1da1f2;
+        }
     </style>
 </head>
 
@@ -68,10 +83,10 @@
             </div>
             <p>Some interesting tweet body.</p>
             <ul class="actions">
-                <li><button>Reply</button></li>
-                <li><button>Retweet</button></li>
-                <li><button>Like</button></li>
-                <li><button>...</button></li>
+                <li><button><i class="fas fa-reply" area-hidden=true></i><span class="sr-only">Reply</span></button></li>
+                <li><button><i class="fas fa-retweet" area-hidden=true></i><span class="sr-only">Retweet</span></button></li>
+                <li><button><i class="fas fa-heart" area-hidden=true></i><span class="sr-only">Like</span></button></li>
+                <li><button><span area-hidden=true>...</span><span class="sr-only">More Actions</span></button></li>
             </ul>
         </div>
     </article>
