@@ -13,7 +13,7 @@
         <div class="nav-wrapper">
             <div class="left-side">
                 <div class="nav-link-wrapper">
-                    <a href="index.hmtl">Home</a>
+                    <a href="index.html">Home</a>
                 </div>
                 <div class="nav-link-wrapper">
                     <a href="about.html">About</a>
@@ -212,4 +212,17 @@
     </div>
 </body>
 
+<script>
+    const portfolioItems = document.querySelectorAll(".portfolio-item-wrapper");
+    portfolioItems.forEach(item => {
+        item.addEventListener('mouseover', () => {
+            item.childNodes[1].classList.add('img-darken');
+        })
+
+        item.addEventListener('mouseout', () => {
+            item.childNodes[1].classList.remove('img-darken');
+        })
+    })
+
+</script>
 </html>
