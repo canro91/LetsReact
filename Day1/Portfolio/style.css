@@ -46,6 +46,14 @@ body {
     color: black;
 }
 
+.active-nav-link {
+    border-bottom: 1px solid black;
+}
+
+.active-nav-link a {
+    color: black !important;
+}
+
 /* Portfolio sytles */
 .portfolio-items-wrapper {
     display: grid;
