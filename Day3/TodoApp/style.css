@@ -60,6 +60,7 @@ form button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.5s ease;
 }
 
 .todo li {
@@ -69,6 +70,7 @@ form button:hover {
 .todo-item {
     padding: 0rem 0.5rem;
 }
+
 
 .complete-btn, .delete-btn{
     background: #1985a1;
@@ -82,4 +84,17 @@ form button:hover {
 
 .complete-btn {
     background: #199F60;
+}
+
+.fa-check, .fa-trash {
+    pointer-events: none;
+}
+
+.todo-item-completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+.todo-item-deleted {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
 }
