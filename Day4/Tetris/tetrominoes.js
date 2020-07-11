@@ -1,24 +1,3 @@
-class Piece {
-
-    constructor(determino, color){
-        this.determino = determino;
-        this.rotationNumber = 0;
-        this.current = this.determino[this.rotationNumber];
-        this.color = color;
-
-        this.x = 3;
-        this.y = -2;
-    }
-
-    get rawPiece(){
-        return this.rotations[this.currentRotation];
-    }
-
-    rotate() {
-        return this.rotations[this.currentRotation + 1 % this.rotations.length];
-    }
-}
-
 const I = [
 	[
 		[0, 0, 0, 0],
