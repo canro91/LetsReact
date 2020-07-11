@@ -13,6 +13,7 @@ const PIECES = [
     [J, "orange"]
 ];
 
+const scoreElement = document.getElementById('score');
 const canvas = document.getElementById('tetris');
 const ctx = canvas.getContext('2d');
 
@@ -160,12 +161,13 @@ let piece = tetrominio[0];
 let currentRotation = 0;
 let x = initX;
 let y = initY;
+let score = 0;
 
 let start = Date.now();
 function drop() {
     let now = Date.now();
     let delta = now - start;
-    if (delta > 1000) {
+    if (delta > 500) {
         animate();
         start = Date.now();
     }
@@ -221,10 +223,14 @@ function lockPiece(piece, x, y, color) {
             for (let c = 0; c < COL; c++) {
                 board[0][c] = VACANT_COLOR;
             }
+
+            score += 10;
+            scoreElement.innerHTML = score;
         }
     }
 
     drawBoard();
+
 }
 
 function randomPiece() {
