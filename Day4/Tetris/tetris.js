@@ -3,6 +3,16 @@ const ROW = ROWS = 20;
 const COL = COLUMNS = 10;
 const VACANT_COLOR = "white";
 
+const PIECES = [
+    [Z,"red"],
+    [S,"green"],
+    [T,"yellow"],
+    [O,"blue"],
+    [L,"purple"],
+    [I,"cyan"],
+    [J,"orange"]
+];
+
 const canvas = document.getElementById('tetris');
 const ctx = canvas.getContext('2d');
 
@@ -51,31 +61,54 @@ document.addEventListener('keydown', function (event) {
 });
 
 function moveLeft() {
-    if (!hasCollition(piece, x, y, -1, 0)) {
+    doIfNoCollition(piece, x, y, -1, 0, () => {
         unDrawPiece(piece, x, y);
         x--;
         drawPiece(piece, x, y, color);
-    }
+    });
 }
 
-//TODO
 function rotate() {
+    const [nextRotation, nextPiece] = rotatePiece(tetrominio, currentRotation);
+    let delta = 0;
+    doIfNoCollition(nextPiece, x, y, 0, 0, () => {
+        if (x > COLUMNS/2) {
+            delta = -1;
+        } else {
+            delta = 1;
+        }
+    });
+
+    doIfNoCollition(nextPiece, x, y, delta, 0, () =>{
+        unDrawPiece(piece, x, y);
+        x += delta;
+        piece = nextPiece;
+        currentRotation = nextRotation;
+        drawPiece(piece, x, y, color);
+    });
+
     drawPiece(x, y, color);
 }
 
 function moveRight() {
-    if (!hasCollition(piece, x, y, 1, 0)) {
+    doIfNoCollition(piece, x, y, 1, 0, () => {
         unDrawPiece(piece, x, y);
         x++;
         drawPiece(piece, x, y, color)
-    }
+    });
 }
 
 function moveDown() {
-    if (!hasCollition(piece, x, y, 0, 1)) {
+    doIfNoCollition(piece, x, y, 0, 1, () => {
         unDrawPiece(piece, x, y);
         y++;
         drawPiece(piece, x, y, color);
+    });
+}
+
+function doIfNoCollition(piece, x, y, deltaX, deltaY, f) {
+    if (!hasCollition(piece, x, y, deltaX, deltaY)) {
+        f();
     }
 }
 
@@ -108,6 +141,8 @@ function hasCollition(piece, x, y, deltaX, deltaY) {
 }
 
 const color = 'red';
+let tetrominio = Z;
+let currentRotation = 0;
 let piece = Z[0];
 let x = 3;
 let y = -2;
@@ -134,6 +169,17 @@ let y = -2;
 // function isGameOver() {
 //     return false;
 // }
+
+function randomPiece(){
+    let r = Math.floor(Math.random() * PIECES.length)
+    piece = PIECES[r][0];
+    color = PIECES[r][1];
+}
+
+function rotatePiece(tetrominio, currentRotation) {
+    const nextRotation =(currentRotation + 1)%tetrominio.length; 
+    return [nextRotation, tetrominio[nextRotation]];
+}
 
 function drawPiece(piece, x, y, color) {
     doOnActiveCellsOfPiece(piece, (r, c) => drawSquare(x + c, y + r, color));
