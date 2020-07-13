@@ -23,7 +23,9 @@ app.get('/meows', (req, res) => {
     .find({}, { sort: { created: -1 } })
     .then(meows => {
         res.json(meows);
-    });
+    })
+    .catch(err => console.log(err))
+    .then(() => db.close());
 });
 
 const createMeowLimiter = rateLimit({
@@ -48,7 +50,8 @@ app.post('/meows', createMeowLimiter, (req, res) => {
                 console.log(createdMeow);
                 res.json(createdMeow);
             })
-            .catch(err => {console.log(err);});
+            .catch(err => { console.log(err); })
+            .then(() => db.close());
     } else {
         res.status(422);
         res.json({
