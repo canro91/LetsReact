@@ -4,6 +4,8 @@ const loading = document.querySelector('.loading');
 loading.style.display = '';
 
 const form = document.querySelector('form');
+const errorElement = document.querySelector('.error-message');
+
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     const formData = new FormData(form);
@@ -15,6 +17,7 @@ form.addEventListener('submit', (event) => {
         content
     };
 
+    errorElement.style.display = 'none';
     loading.style.display = '';
     form.style.display = 'none';
 
@@ -35,6 +38,11 @@ form.addEventListener('submit', (event) => {
         }, 10*1000);
 
         listAllMeows();
+    }).catch(errorMessage => {
+        form.style.display = '';
+        errorElement.textContent = errorMessage;
+        errorElement.style.display = '';
+        loadingElement.style.display = 'none';
     });
 });
 
