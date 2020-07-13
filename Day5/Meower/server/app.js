@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const monk = require('monk');
 const badWords = require('bad-words');
-
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 
@@ -26,7 +26,12 @@ app.get('/meows', (req, res) => {
     });
 });
 
-app.post('/meows', (req, res) => {
+const createMeowLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 2,
+    message: "Too many meows, please try again later...Greow!"
+});
+app.post('/meows', createMeowLimiter, (req, res) => {
     if (isValidMeow(req.body)) {
         const filter = new badWords();
         const rawContent = req.body.content.toString();
