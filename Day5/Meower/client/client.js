@@ -29,8 +29,10 @@ form.addEventListener('submit', (event) => {
     .then(createdMeow => {
         form.reset();
 
-        loading.style.display = 'none';
-        form.style.display = '';
+        setTimeout(() => {
+            loading.style.display = 'none';
+            form.style.display = '';
+        }, 10*1000);
 
         listAllMeows();
     });

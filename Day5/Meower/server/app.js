@@ -29,8 +29,8 @@ app.get('/meows', (req, res) => {
 });
 
 const createMeowLimiter = rateLimit({
-    windowMs: 60 * 60 * 1000,
-    max: 2,
+    windowMs: 10 * 1000,
+    max: 1,
     message: "Too many meows, please try again later...Greow!"
 });
 app.post('/meows', createMeowLimiter, (req, res) => {
