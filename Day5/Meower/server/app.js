@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const monk = require('monk');
+const badWords = require('bad-words');
+
 
 const app = express();
 
@@ -26,9 +28,12 @@ app.get('/meows', (req, res) => {
 
 app.post('/meows', (req, res) => {
     if (isValidMeow(req.body)) {
+        const filter = new badWords();
+        const rawContent = req.body.content.toString();
+
         const meow = {
             name: req.body.name.toString(),
-            content: req.body.content.toString(),
+            content: filter.clean(rawContent),
             created: new Date()
         };
 
