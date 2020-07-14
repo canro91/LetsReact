@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import Table from './Table'
 
 class App extends Component {
-
-    render() {
-        const characters = [
+    state = {
+        characters: [
             {
                 'name': 'Captain America',
                 'job': 'Super Soldier'
@@ -17,11 +16,25 @@ class App extends Component {
                 'name': 'Bruce Banner',
                 'job': 'Getting angry'
             },
-        ]
+        ],
+    }
+
+    removeCharacter = (index) => {
+        const { characters } = this.state
+
+        this.setState({
+            characters: characters.filter((character, i) => {
+                return i !== index
+            })
+        })
+    }
+
+    render() {
+        const { characters } = this.state
 
         return (
             <div className="container">
-                <Table charactersData={characters} />
+                <Table charactersData={characters} removeCharacter={this.removeCharacter} />
             </div>
         )
     }
