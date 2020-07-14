@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+// A simple component is just a function returning some JSX
 const TableHeader = () => {
     return (
         <thead>
@@ -11,35 +12,27 @@ const TableHeader = () => {
     )
 }
 
-const TableBody = () => {
-    return (
-        <tbody>
-            <tr>
-                <td>Charlie</td>
-                <td>Janitor</td>
+const TableBody = (props) => {
+    const rows = props.charactersData.map((row, index) => {
+        return (
+            <tr key={index}>
+                <td>{row.name}</td>
+                <td>{row.job}</td>
             </tr>
-            <tr>
-                <td>Mac</td>
-                <td>Bouncer</td>
-            </tr>
-            <tr>
-                <td>Dee</td>
-                <td>Aspiring actress</td>
-            </tr>
-            <tr>
-                <td>Dennis</td>
-                <td>Bartender</td>
-            </tr>
-        </tbody>
-    )
+        )
+    })
+    
+    return <tbody>{rows}</tbody>
 }
 
 class Table extends Component {
     render() {
+        const { charactersData } = this.props;
+
         return (
             <table>
                 <TableHeader />
-                <TableBody />
+                <TableBody charactersData={charactersData} />
             </table>
         )
     }
