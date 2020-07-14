@@ -1,24 +1,14 @@
 import React, { Component } from 'react'
 import Table from './Table'
+import Form from './Form'
 
 class App extends Component {
     state = {
-        characters: [
-            {
-                'name': 'Captain America',
-                'job': 'Super Soldier'
-            },
-            {
-                'name': 'Tony Starks',
-                'job': 'Engineer, among other things'
-            },
-            {
-                'name': 'Bruce Banner',
-                'job': 'Getting angry'
-            },
-        ],
+        characters: []
     }
 
+    // Why this function is here instead of TableBody?
+    // The component holding the state is App
     removeCharacter = (index) => {
         const { characters } = this.state
 
@@ -29,11 +19,16 @@ class App extends Component {
         })
     }
 
+    handleSubmit = (character) => {
+        this.setState({characters: [character, ...this.state.characters]})
+    }
+
     render() {
         const { characters } = this.state
 
         return (
             <div className="container">
+                <Form handleSubmit={this.handleSubmit} />
                 <Table charactersData={characters} removeCharacter={this.removeCharacter} />
             </div>
         )
