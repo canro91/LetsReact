@@ -1,4 +1,23 @@
+html, body, #root, .room {
+  height: 100%;
+  margin: 0;
+}
+
 .hello {
     border: 1px solid black;
     padding-left: 1rem;
+}
+
+.room {
+ padding: 1rem;
+}
+
+.isLit {
+    background-color: white;
+    color: black;
+}
+
+.isDark {
+    background-color: black;
+    color: greenyellow;
 }

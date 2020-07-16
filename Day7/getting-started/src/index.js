@@ -1,38 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 
-// "Old" syntax
-// class Hi extends Component {
-//   render() {
-//     return (
-//       <div className="hello">
-//         <h1>Hello, {this.props.name}!!!</h1>
-//       </div>
-//     )
-//   }
-// }
+function Room() {
+    const [isLit, setLit] = React.useState(true);
+    const [temperature, setTemperature] = React.useState(22);
+    const brightness = isLit ? 'isLit' : 'isDark'
 
-// ES6-powered syntax
-// It uses
-// Object deconstruction ({ name }) instead of (props)
-// Arrow functions () => {} instead of function XXX() {}
-// Remove brackets for one-liners. Implicit return
-const Hi = ({ name }) => (
-  <div className="hello">
-    <h1>Hello, {name}!!!</h1>
-  </div>
-)
-ReactDOM.render(<Hi name="Alice" />, document.querySelector('#root'))
+    return (
+        <div className={`room ${brightness}`}>
+            <p>the room is {isLit ? 'lit' : 'dark'}</p>
+            <p>Temperature: {temperature}</p>
+            <button onClick={() => setLit(!isLit)}>flip</button>
+            <button onClick={() => setLit(true)}>on</button>
+            <button onClick={() => setLit(false)}>off</button>
+            <button onClick={() => setTemperature(temperature+1)}>+</button>
+            <button onClick={() => setTemperature(temperature-1)}>-</button>
+        </div>
+    )
+}
 
-const MediaCard = ({ title, body, imageUrl }) => (
-  <div>
-    <h2>{title}</h2>
-    <p>{body}</p>
-    <img src={imageUrl} />
-  </div>
-)
-ReactDOM.render(<MediaCard title="MasterCard" body="You can buy anything else" imageUrl="https://duckduckgo.com/i/567266dc.png"/>, document.querySelector('#root'))
-
-const Gate = (isOpen) => <div>{isOpen ? 'open' : 'close'}</div>
-ReactDOM.render(<Gate isOpen={true} />, document.querySelector('#root'))
+ReactDOM.render(<Room />, document.getElementById('root'))
