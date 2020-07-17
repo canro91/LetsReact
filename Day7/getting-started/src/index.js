@@ -1,23 +1,47 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
 
-function Room() {
-    const [isLit, setLit] = React.useState(true);
-    const [temperature, setTemperature] = React.useState(22);
-    const brightness = isLit ? 'isLit' : 'isDark'
+const Post = ({ post }) => {
+    const { author, votes, url, title } = post
+    return (
+        <li>
+            {author} | {votes} | <a target="_blank" href={url}>{title}</a>
+        </li>
+    )
+}
+function Reddit() {
+    const [posts, setPosts] = React.useState([]);
+
+    React.useEffect(() => {
+        axios.get(`http://www.reddit.com/r/reactjs/new.json?sort=new`, { method: 'GET' })
+            .then(response => {
+                const newPosts = response.data.data.children
+                    .map(obj => obj.data)
+                    .map(obj => {
+                        return {
+                            created: obj.created,
+                            author: obj.author_fullname,
+                            title: obj.title,
+                            url: obj.url,
+                            votes: obj.ups
+                        }
+                    });
+                console.log(newPosts);
+                setPosts(newPosts);
+            })
+    }, [])
 
     return (
-        <div className={`room ${brightness}`}>
-            <p>the room is {isLit ? 'lit' : 'dark'}</p>
-            <p>Temperature: {temperature}</p>
-            <button onClick={() => setLit(!isLit)}>flip</button>
-            <button onClick={() => setLit(true)}>on</button>
-            <button onClick={() => setLit(false)}>off</button>
-            <button onClick={() => setTemperature(temperature+1)}>+</button>
-            <button onClick={() => setTemperature(temperature-1)}>-</button>
+        <div>
+            <h1>/r/reactjs</h1>
+            <div>
+                {posts.map(post => (
+                    <Post key={post.created} post={post} />
+                ))}
+            </div>
         </div>
     )
 }
 
-ReactDOM.render(<Room />, document.getElementById('root'))
+ReactDOM.render(<Reddit />, document.getElementById('root'))
