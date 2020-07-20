@@ -9,6 +9,8 @@
 3. render
 5. updating...
 
+* Constructor in components is no longer required.
+
 ***
 
 ## Installing issues
