@@ -14,6 +14,9 @@
 ## Installing issues
 
 * [How To Install And Setup A React App On Windows 10](https://www.techomoro.com/how-to-install-and-setup-a-react-app-on-windows-10/)
+    * `$ create-react-app <my-project>`
+    * `$ cd <my-project>`
+    * `$ npm start`
 * [Running npx globally does not work on Windows when the user folder patch contains a space](https://github.com/zkat/npx/issues/146#issuecomment-384016791) `npm config set cache "C:\Users\Firstname~1\AppData\Roaming\npm-cache" --global`
 
 How to develop with React inside Docker:
