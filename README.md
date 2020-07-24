@@ -9,3 +9,4 @@
 * Day6: [What React does?](https://daveceddia.com/what-react-does/), [Visual guide to state](https://daveceddia.com/visual-guide-to-state-in-react/) and [Getting Started with React](https://www.taniarascia.com/getting-started-with-react/)
 * Day7: [React: Getting Started - The Complete Tutorial for 2020](https://daveceddia.com/react-getting-started-tutorial/)
 * Day8: [Tutorial: Intro to React](https://reactjs.org/tutorial/tutorial.html)
+* Day9: [Game of Life](https://www.freecodecamp.org/news/create-gameoflife-with-react-in-one-hour-8e686a410174/)
