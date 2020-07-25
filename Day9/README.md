@@ -1,1 +1,4 @@
 # Notes
+
+* getBoundingClientRect
+* ref
