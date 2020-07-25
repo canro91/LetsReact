@@ -26,7 +26,9 @@ class Game extends React.Component {
         this.board = this.makeEmptyBoard();
 
         this.state = {
-            cells: []
+            cells: [],
+            interval: 100,
+            isRunning: false
         };
     }
 
@@ -41,16 +43,72 @@ class Game extends React.Component {
         return board;
     }
 
-    makeCells() {
-        let cells = [];
+    startGame = () => {
+        this.setState({ isRunning: true });
+        this.runIteration();
+    }
+
+    stopGame = () => {
+        this.setState({ isRunning: false });
+        if (this.timeoutHandler) {
+            window.clearTimeout(this.timeoutHandler);
+            this.timeoutHandler = null;
+        }
+    }
+
+    handleIntervalChange = (event) => {
+        this.setState({ interval: event.target.value });
+    }
+
+    runIteration = () => {
+        let newBoard = this.makeEmptyBoard();
+
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
+                let neighbors = this.calculateNeighbors(this.board, x, y);
                 if (this.board[y][x]) {
-                    cells.push({ x, y });
+                    if (neighbors === 2 || neighbors === 3) {
+                        newBoard[y][x] = true;
+                    } else {
+                        newBoard[y][x] = false;
+                    }
+                } else {
+                    if (!this.board[y][x] && neighbors === 3) {
+                        newBoard[y][x] = true;
+                    }
                 }
             }
         }
-        return cells;
+
+        this.board = newBoard;
+        this.setState({ cells: this.makeCells() });
+        this.timeoutHandler = window.setTimeout(() => { this.runIteration(); }, this.state.interval);
+    }
+
+    calculateNeighbors(board, x, y) {
+        let neighbors = 0;
+        const dirs = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]];
+        for (let i = 0; i < dirs.length; i++) {
+            const dir = dirs[i];
+            let y1 = y + dir[0];
+            let x1 = x + dir[1];
+
+            if (x1 >= 0 && x1 < this.cols && y1 >= 0 && y1 < this.rows && board[y1][x1]) {
+                neighbors++;
+            }
+        }
+
+        return neighbors;
+    }
+
+    handleRandom = () => {
+        for (let y = 0; y < this.rows; y++) {
+            for (let x = 0; x < this.cols; x++) {
+                this.board[y][x] = (Math.random() >= 0.5);
+            }
+        }
+
+        this.setState({ cells: this.makeCells() });
     }
 
     // If you use handleClick(event){}, 'this' will have another sense
@@ -77,8 +135,20 @@ class Game extends React.Component {
         };
     }
 
+    makeCells() {
+        let cells = [];
+        for (let y = 0; y < this.rows; y++) {
+            for (let x = 0; x < this.cols; x++) {
+                if (this.board[y][x]) {
+                    cells.push({ x, y });
+                }
+            }
+        }
+        return cells;
+    }
+
     render() {
-        const {cells}= this.state;
+        const { cells, isRunning } = this.state;
 
         return (
             <div>
@@ -88,8 +158,15 @@ class Game extends React.Component {
                     onClick={this.handleClick}
                     ref={(n) => { this.boardRef = n; }}
                 >
-                    {cells.map(cell => <Cell x={cell.x} y={cell.y} key={`${cell.x},${cell.y}`}/>)}
+                    {cells.map(cell => <Cell x={cell.x} y={cell.y} key={`${cell.x},${cell.y}`} />)}
                 </div>
+
+                <div className="controls">
+                    <p>Update every <input value={this.state.interval} onChange={this.handleIntervalChange} /> msec</p>
+                    {isRunning ? <button onClick={this.stopGame}>Stop</button> : <button onClick={this.startGame}>Start</button>}
+                    <button onClick={this.handleRandom}>Random</button>
+                </div>
+
             </div>
         )
     }
