@@ -61,6 +61,11 @@ class Game extends React.Component {
     }
 
     runIteration = () => {
+        this.runOnlyNextIteration();
+        this.timeoutHandler = window.setTimeout(() => { this.runIteration(); }, this.state.interval);
+    }
+
+    runOnlyNextIteration = () => {
         let newBoard = this.makeEmptyBoard();
 
         for (let y = 0; y < this.rows; y++) {
@@ -82,7 +87,6 @@ class Game extends React.Component {
 
         this.board = newBoard;
         this.setState({ cells: this.makeCells() });
-        this.timeoutHandler = window.setTimeout(() => { this.runIteration(); }, this.state.interval);
     }
 
     calculateNeighbors(board, x, y) {
@@ -163,7 +167,15 @@ class Game extends React.Component {
 
                 <div className="controls">
                     <p>Update every <input value={this.state.interval} onChange={this.handleIntervalChange} /> msec</p>
-                    {isRunning ? <button onClick={this.stopGame}>Stop</button> : <button onClick={this.startGame}>Start</button>}
+                    {
+                        isRunning
+                        ? <div><button onClick={this.stopGame}>Stop</button></div>
+                        : <div>
+                            <button onClick={this.startGame}>Start</button>
+                            <button onClick={this.runOnlyNextIteration}>Next</button>
+                            </div>
+                    }
+
                     <button onClick={this.handleRandom}>Random</button>
                 </div>
 
