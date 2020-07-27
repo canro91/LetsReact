@@ -1,11 +1,20 @@
 import React from 'react';
 import Badge from 'react-bootstrap/Badge';
+let marked = require('marked');
 
 class App extends React.Component {
+  state = {
+    markdown: ''
+  };
+
+  updateMarkdown = (markdown) => {
+    this.setState({ markdown })
+  }
+
   render() {
     const inputStyle = {
       width: "400px",
-      height: "50vh",
+      height: "60vh",
       marginLeft: "auto",
       marginRight: "auto",
       padding: "10px"
@@ -13,7 +22,8 @@ class App extends React.Component {
 
     const outputStyle = {
       width: "400px",
-      height: "50vh",
+      maxHeight: "60vh",
+      overflow: "auto",
       backgroundColor: "#DCDCDC",
       marginLeft: "auto",
       marginRight: "auto",
@@ -45,7 +55,14 @@ class App extends React.Component {
               </div>
 
               <div className="mark-input" style={inputStyle}>
-                <textarea className="input" style={inputStyle}></textarea>
+                <textarea 
+                  className="input"
+                  style={inputStyle}
+                  value={this.state.markdown}
+                  onChange={(e) => { this.updateMarkdown(e.target.value) }}
+                >
+                  {" "}
+                </textarea>
               </div>
             </div>
 
@@ -57,8 +74,11 @@ class App extends React.Component {
                   </Badge>
                 </h4>
               </div>
-              <div className="output" style={outputStyle}>
-
+              <div
+                className="output"
+                style={outputStyle}
+                dangerouslySetInnerHTML={{ __html: marked(this.state.markdown) }}
+              >
               </div>
             </div>
           </div>

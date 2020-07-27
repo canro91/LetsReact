@@ -3,6 +3,8 @@
 * StrictMode
 * React Boostrap should be loaded as the first dependency
 * For `mt-4`, see [Spacing](https://getbootstrap.com/docs/4.0/utilities/spacing/)
+* `require('xxx')` vs `import X from 'file'`
+* [Make div vertically scrollable](https://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css)
 
 ***
 
