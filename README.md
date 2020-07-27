@@ -10,3 +10,4 @@
 * Day7: [React: Getting Started - The Complete Tutorial for 2020](https://daveceddia.com/react-getting-started-tutorial/)
 * Day8: [Tutorial: Intro to React](https://reactjs.org/tutorial/tutorial.html)
 * Day9: [Game of Life](https://www.freecodecamp.org/news/create-gameoflife-with-react-in-one-hour-8e686a410174/)
+* Day10: [Markdown Previewer](https://www.freecodecamp.org/news/how-to-build-a-markdown-previewer-with-react-js/)
