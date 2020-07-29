@@ -24,6 +24,7 @@ class Game extends React.Component {
         this.rows = HEIGHT / CELL_SIZE;
         this.cols = WIDTH / CELL_SIZE;
         this.board = this.makeEmptyBoard();
+        this.boardRef = React.createRef();
 
         this.state = {
             cells: [],
@@ -131,10 +132,12 @@ class Game extends React.Component {
     }
 
     getElementOffset() {
-        const rect = this.boardRef.getBoundingClientRect();
+        const rect = this.boardRef.current.getBoundingClientRect();
         const doc = document.documentElement;
         return {
+            // Left position + scroll - border
             x: (rect.left + window.pageXOffset) - doc.clientLeft,
+            // Top position + scroll - border
             y: (rect.top + window.pageYOffset) - doc.clientTop,
         };
     }
@@ -160,7 +163,7 @@ class Game extends React.Component {
                     className="Board"
                     style={{ width: WIDTH, height: HEIGHT, backgroundSize: `${CELL_SIZE}px ${CELL_SIZE}px` }}
                     onClick={this.handleClick}
-                    ref={(n) => { this.boardRef = n; }}
+                    ref={this.boardRef}
                 >
                     {cells.map(cell => <Cell x={cell.x} y={cell.y} key={`${cell.x},${cell.y}`} />)}
                 </div>
