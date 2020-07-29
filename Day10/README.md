@@ -1,9 +1,9 @@
 # Notes
 
-* StrictMode
+* StrictMode runs some checks while in development mode. See [StrictMode](https://reactjs.org/docs/strict-mode.html)
 * React Boostrap should be loaded as the first dependency
 * For `mt-4`, see [Spacing](https://getbootstrap.com/docs/4.0/utilities/spacing/)
-* `require('xxx')` vs `import X from 'file'`
+* `require('xxx')` vs `import X from 'file'` See: [require vs import](https://stackoverflow.com/questions/46677752/the-difference-between-requirex-and-import-x)
 * [Make div vertically scrollable](https://stackoverflow.com/questions/9707397/making-a-div-vertically-scrollable-using-css)
 
 ***
