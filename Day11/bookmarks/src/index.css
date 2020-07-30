@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    margin-top: 2em;
+    max-height: 100vh;
+}
+
+.leftContent {
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.leftContent form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    height: 200px;
+    padding: 1.5em;
+}
+
+.leftContent form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.leftContent form .formTitle, .leftContent form .formLabel {
+    margin: 0;
+}
+
+.leftContent form input {
+    padding: 5px;
+    margin-top: 0.2em;
+}
+
+.leftContent form button {
+    margin-top: 1em;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.rightContent {
+    height: 100vh;
+    display: flex;
+    flex-basis: 50%;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.rightContent .linkCard {
+    width: 60%;
+    display: flex;
+    margin-top: 50px;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0;
+}
+
+.rightContent .linkCardLink a {
+    margin-left: 10px ;
+
+}
