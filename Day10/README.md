@@ -16,3 +16,4 @@
 ## Settings
 
 * [Use Emmet with React](https://medium.com/@eshwaren/enable-emmet-support-for-jsx-in-visual-studio-code-react-f1f5dfe8809c)
+* [Rename tags and auto import](https://dev.to/robole/vs-code-you-don-t-need-that-extension-18d7)
