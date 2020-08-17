@@ -20,4 +20,5 @@
 * Day9: [Game of Life](https://www.freecodecamp.org/news/create-gameoflife-with-react-in-one-hour-8e686a410174/)
 * Day10: [Markdown Previewer](https://www.freecodecamp.org/news/how-to-build-a-markdown-previewer-with-react-js/)
 * Day11: [Bookmark App](https://www.youtube.com/watch?v=Ev9YLaLvAJM)
+* Day12: [Build a Recipe App With React](https://www.youtube.com/watch?v=U9T6YkEDkMo)
 
