@@ -36,9 +36,11 @@ const App = () => {
         <input className="search-bar" type="text" value={search} onChange={e => setSearch(e.currentTarget.value)} />
         <button className="search-button" type="submit">Search</button>
       </form>
-      {recipes.map((recipe, index) => (
-        <Recipe key={recipe.recipe.label} recipe={recipe.recipe} />
-      ))}
+      <div className="recipes">
+        {recipes.map((recipe) => (
+          <Recipe key={recipe.recipe.label} recipe={recipe.recipe} />
+        ))}
+      </div>
     </div>
   );
 }
