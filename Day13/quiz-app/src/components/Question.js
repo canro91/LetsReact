@@ -5,10 +5,10 @@ const Question = ({ question, answers, selected }) => {
 
     return (
         <div className="questionBox">
-            <h4>{question}</h4>
+            <div className="question">{question}</div>
             {options.map((text, index) =>
                 <button
-                    className="answerButton"
+                    className="answerBtn"
                     key={index}
                     onClick={() => { setOptions([text]); selected(text); }}
                 >

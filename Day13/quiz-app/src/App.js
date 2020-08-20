@@ -2,6 +2,7 @@ import React from 'react';
 import quizService from './quizService';
 import Question from './components/Question'
 import Result from './components/Result';
+import './App.css'
 
 const App = () => {
   const [questions, setQuestions] = React.useState([]);
@@ -33,7 +34,7 @@ const App = () => {
   };
 
   return (
-    <div className="Container">
+    <div className="container">
       <div className="title">Quizz</div>
       {responses < 5 && questions.map(({ questionId, question, answers, correct }) =>
         <Question
