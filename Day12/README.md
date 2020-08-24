@@ -4,5 +4,5 @@
 
 ## Tools
 
-[Recipe Search API](https://www.edamam.com/)
-[Web Gradients](https://webgradients.com/)
+* [Recipe Search API](https://www.edamam.com/)
+* [Web Gradients](https://webgradients.com/)
