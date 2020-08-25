@@ -1,23 +1,29 @@
 import React from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Styles = styled.div`
     .navbar {
         background-color: #222;
     }
 
-    a, .navbar-brand, .navbar-nav, .nav-link {
+    a, .navbar-brand, .navbar-nav, .nav-item {
         color: #bbb;
 
         &:hover {
             color: white;
         }
     }
+
+    .nav-item {
+        padding-top: .3125rem;
+        padding-bottom: .3125rem;
+        margin-right: 1rem;
+    }
 `;
 
-const Navigation = (props) => {
+const Navigation = () => {
     return (
         <Styles>
             <Navbar expand="lg">
@@ -25,21 +31,23 @@ const Navigation = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto">
-                        <Nav.Item>
-                            <Nav.Link>
-                                <Link to="/">Home</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>
-                                <Link to="/about">About</Link>
-                            </Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link>
-                                <Link to="/contact">Contact</Link>
-                            </Nav.Link>
-                        </Nav.Item>
+                        <LinkContainer to="/">
+                            <Nav.Item>
+                                Home
+                            </Nav.Item>
+                        </LinkContainer>
+
+                        <LinkContainer to="/about">
+                            <Nav.Item>
+                                About
+                                </Nav.Item>
+                        </LinkContainer>
+
+                        <LinkContainer to="/contact">
+                            <Nav.Item>
+                                Contact
+                            </Nav.Item>
+                        </LinkContainer>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
