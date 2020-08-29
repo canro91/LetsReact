@@ -1,0 +1,10 @@
+form {
+    margin-top: 3rem;
+}
+
+form input[name="city"] {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid whitesmoke;
+  border-radius: 0;
+}

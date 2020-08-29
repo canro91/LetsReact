@@ -28,10 +28,10 @@ const Weather = ({ city, country, current, min, max, description, iconId }) => {
             case iconId >= 700 && iconId <= 781:
                 return icons.atmosphere;
 
-            case iconId == 800:
+            case iconId === 800:
                 return icons.clear;
 
-            case iconId >= 800 && iconId <= 804:
+            default:
                 return icons.clouds;
         }
 
@@ -39,7 +39,7 @@ const Weather = ({ city, country, current, min, max, description, iconId }) => {
 
     return (
         <div className="container">
-            <div className="cards">
+            <div className="cards pt-4">
                 <h1>{city}, {country}</h1>
                 <h5 className="py-4">
                     <i className={`wi ${mapIconToStyle(iconId)} display-1`}></i>
