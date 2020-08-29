@@ -9,8 +9,24 @@ const API_KEY = '23b7f9c35607924f30a9ada97b7faa95';
 function App() {
   const [forecast, setForecast] = React.useState({});
 
-  const loadWeather = (search) => {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`)
+  React.useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        const coordinates = {
+          lat: lat,
+          lon:lon
+        };
+        loadWeather('', coordinates)
+      });
+    }
+  },[]);
+
+  const loadWeather = (search, position) => {
+    const query =search ? `q=${search}` : `lat=${position['lat']}&lon=${position['lon']}`;
+    const url =`https://api.openweathermap.org/data/2.5/weather?${query}&appid=${API_KEY}&units=metric`;
+    fetch(url)
       .then(response => response.json())
       .then(response => {
         if (response.message) {
