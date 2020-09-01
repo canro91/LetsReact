@@ -1,10 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
 
-const Success = (props) => {
+const Success = () => {
     return (
-        <div>
-            
-        </div>
+        <MuiThemeProvider>
+            <Fragment>
+                <AppBar title="Success" />
+
+                <h2>Thanks for your registration!!!</h2>
+            </Fragment>
+        </MuiThemeProvider>
     );
 }
 

@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import { List, ListItem } from 'material-ui/List'
 import RaisedButton from 'material-ui/RaisedButton';
 
-const Confirm = ({previousStep, nextStep, values}) => {
+const Confirm = ({ previousStep, nextStep, values }) => {
     const doBack = (e) => {
         e.preventDefault();
         previousStep();
@@ -12,6 +12,7 @@ const Confirm = ({previousStep, nextStep, values}) => {
 
     const doContinue = (e) => {
         e.preventDefault();
+        // Backend call here...
         nextStep();
     };
 
@@ -26,6 +27,26 @@ const Confirm = ({previousStep, nextStep, values}) => {
                         primaryText="firstName"
                         secondaryText={firstName}
                     />
+                    <ListItem
+                        primaryText="lastName"
+                        secondaryText={lastName}
+                    />
+                    <ListItem
+                        primaryText="email"
+                        secondaryText={email}
+                    />
+                    <ListItem
+                        primaryText="occupation"
+                        secondaryText={occupation}
+                    />
+                    <ListItem
+                        primaryText="city"
+                        secondaryText={city}
+                    />
+                    <ListItem
+                        primaryText="bio"
+                        secondaryText={bio}
+                    />
                 </List>
                 <br />
                 <RaisedButton
@@ -34,7 +55,7 @@ const Confirm = ({previousStep, nextStep, values}) => {
                     onClick={doBack}
                 />
                 <RaisedButton
-                    label="Continue"
+                    label="Confirm"
                     primary="true"
                     style={styles.button}
                     onClick={doContinue}

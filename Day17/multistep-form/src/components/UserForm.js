@@ -37,7 +37,7 @@ const UserForm = () => {
                     1: <UserDetailsForm nextStep={nextStep} handleOnChange={handleOnChange} values={state} />,
                     2: <PersonalDetailsForm previousStep={previousStep} nextStep={nextStep} handleOnChange={handleOnChange} values={state} />,
                     3: <Confirm previousStep={previousStep} nextStep={nextStep} handleOnChange={handleOnChange} values={state} />,
-                    4: <Success previousStep={previousStep} handleOnChange={handleOnChange} values={state} />,
+                    4: <Success />,
                 }[step]
             }
         </div>
