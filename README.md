@@ -26,3 +26,4 @@
 * Day15: [Build a website](https://www.youtube.com/watch?v=tOK9l5uP06U)
 * Day16: [Weather app](https://www.youtube.com/watch?v=IxuqmfO6p28)
 * Day17: [Multi Step Form With React & Material UI](https://www.youtube.com/watch?v=zT62eVxShsY)
+* Day18: Copywork of [Snake](https://github.com/taming-the-state-in-react/react-snake)

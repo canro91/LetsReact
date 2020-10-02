@@ -1,0 +1,29 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.grid-cell {
+  display: flex;
+  flex-direction: column;
+
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+
+  width: 15px;
+  height: 15px;
+}
+
+.grid-cell:last-child {
+  border-right: 1px solid black;
+}
+
+.grid-cell-border {
+  background-color: black;
+}
