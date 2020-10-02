@@ -27,3 +27,11 @@
 .grid-cell-border {
   background-color: black;
 }
+
+.grid-cell-snake {
+  background-color: black;
+}
+
+.grid-cell-snack {
+  background-color: cornflowerblue;
+}
