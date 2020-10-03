@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 
+const TICK_RATE = 200;
 const GRID = [];
 const GRID_SIZE = 35;
 for (let index = 0; index < GRID_SIZE; index++) {
@@ -20,9 +21,57 @@ const getClassNames = (x, y, snake, snack) => {
   return `grid-cell ${border} ${snakeCell} ${snackCell}`;
 };
 
+const DIRECTIONS = {
+  LEFT: 'LEFT',
+  UP: 'UP',
+  DOWN: 'DOWN',
+  RIGHT: 'RIGHT'
+};
+
+const KEY_MAPPER = {
+  37: 'LEFT',
+  38: 'UP',
+  39: 'RIGHT',
+  40: 'DOWN'
+};
+
+const DIRECTION_POSITIONS = {
+  LEFT: (x, y) => ({ x: x - 1, y }),
+  UP: (x, y) => ({ x, y: y - 1 }),
+  DOWN: (x, y) => ({ x, y: y + 1 }),
+  RIGHT: (x, y) => ({ x: x + 1, y })
+};
+
 function App() {
+  const [playground, setPlayground] = React.useState({ direction: DIRECTIONS.RIGHT });
   const [snake, setSnake] = React.useState({ position: { x: 10, y: 10 } });
   const [snack, setSnack] = React.useState({ position: { x: 17, y: 17 } });
+
+  React.useEffect(() => {
+    const tick = setInterval(onTick, TICK_RATE);
+
+    window.addEventListener('keyup', onDirectionChanged, false);
+
+    return () => {
+      window.removeEventListener('keyup', onDirectionChanged);
+
+      clearInterval(tick);
+    };
+  });
+
+  const onTick = () => {
+    const currentDirection = playground.direction;
+    const updateDirectionFunc = DIRECTION_POSITIONS[currentDirection];
+    const nextPosition = updateDirectionFunc(snake.position.x, snake.position.y);
+    setSnake({ position: nextPosition });
+  };
+
+  const onDirectionChanged = (event) => {
+    if (KEY_MAPPER[event.keyCode]) {
+      const direction = KEY_MAPPER[event.keyCode];
+      setPlayground({ direction: direction });
+    }
+  };
 
   return (
     <div className="app">
