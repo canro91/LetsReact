@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-const TICK_RATE = 200;
+const TICK_RATE = 150;
 const GRID = [];
 const GRID_SIZE = 35;
 for (let index = 0; index < GRID_SIZE; index++) {
@@ -11,12 +11,15 @@ for (let index = 0; index < GRID_SIZE; index++) {
 const isBorderCell = (x, y) =>
   x === 0 || y === 0 || x === GRID_SIZE - 1 || y === GRID_SIZE - 1;
 
+const isSnake = (x, y, snake) =>
+  snake.positions.filter(pos => areAtTheSamePosition(x, y, pos.x, pos.y)).length;
+
 const areAtTheSamePosition = (x, y, x1, y1) =>
   x === x1 && y === y1;
 
 const getClassNames = (x, y, snake, snack) => {
   const border = isBorderCell(x, y) ? 'grid-cell-border' : '';
-  const snakeCell = areAtTheSamePosition(x, y, snake.position.x, snake.position.y) ? 'grid-cell-snake': '';
+  const snakeCell = isSnake(x, y, snake) ? 'grid-cell-snake': '';
   const snackCell = areAtTheSamePosition(x, y, snack.position.x, snack.position.y) ? 'grid-cell-snack' : '';
   return `grid-cell ${border} ${snakeCell} ${snackCell}`;
 };
@@ -42,10 +45,31 @@ const DIRECTION_POSITIONS = {
   RIGHT: (x, y) => ({ x: x + 1, y })
 };
 
+const generateRandomPosition = () => {
+  return {
+    x: generateRandomNumber(1, GRID_SIZE - 2),
+    y: generateRandomNumber(1, GRID_SIZE - 2)
+  }
+};
+
+const generateRandomNumber= (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const isSnakeEating = (snake, snack) => {
+  const head = snakeHead(snake);
+  return areAtTheSamePosition(head.x, head.y, snack.position.x, snack.position.y);
+};
+
+const snakeHead = (snake) =>
+  snake.positions[0];
+
+const snakeBody = (snake) =>
+  snake.positions.slice(0, snake.positions.length - 1);
+
 function App() {
   const [playground, setPlayground] = React.useState({ direction: DIRECTIONS.RIGHT });
-  const [snake, setSnake] = React.useState({ position: { x: 10, y: 10 } });
-  const [snack, setSnack] = React.useState({ position: { x: 17, y: 17 } });
+  const [snake, setSnake] = React.useState({ positions: [ generateRandomPosition() ] });
+  const [snack, setSnack] = React.useState({ position: generateRandomPosition() });
 
   React.useEffect(() => {
     const tick = setInterval(onTick, TICK_RATE);
@@ -60,10 +84,18 @@ function App() {
   });
 
   const onTick = () => {
+    const isEating = isSnakeEating(snake, snack);
+
+    const head = snakeHead(snake);
     const currentDirection = playground.direction;
     const updateDirectionFunc = DIRECTION_POSITIONS[currentDirection];
-    const nextPosition = updateDirectionFunc(snake.position.x, snake.position.y);
-    setSnake({ position: nextPosition });
+    const nextPosition = updateDirectionFunc(head.x, head.y);
+
+    const tail = isEating ? snake.positions : snakeBody(snake);
+    setSnake({ positions: [nextPosition, ...tail] });
+
+    const snackPosition = isEating ? generateRandomPosition() : snack.position;
+    setSnack({ position: snackPosition });
   };
 
   const onDirectionChanged = (event) => {
