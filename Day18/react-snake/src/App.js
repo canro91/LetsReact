@@ -4,24 +4,27 @@ import './App.css';
 const TICK_RATE = 150;
 const GRID = [];
 const GRID_SIZE = 35;
-for (let index = 0; index < GRID_SIZE; index++) {
+for (let index = 0; index <= GRID_SIZE; index++) {
   GRID.push(index);
 }
 
-const isBorderCell = (x, y) =>
-  x === 0 || y === 0 || x === GRID_SIZE - 1 || y === GRID_SIZE - 1;
+const isAtBorder = (x, y) =>
+  x === 0 || y === 0 || x === GRID_SIZE || y === GRID_SIZE;
 
 const isSnake = (x, y, snake) =>
-  snake.positions.filter(pos => areAtTheSamePosition(x, y, pos.x, pos.y)).length;
+  snake.positions && snake.positions.filter(pos => areAtTheSamePosition(x, y, pos.x, pos.y)).length;
 
 const areAtTheSamePosition = (x, y, x1, y1) =>
   x === x1 && y === y1;
 
-const getClassNames = (x, y, snake, snack) => {
-  const border = isBorderCell(x, y) ? 'grid-cell-border' : '';
+const getClassNames = (x, y, isGameOver, snake, snack) => {
+  const border = isAtBorder(x, y) ? 'grid-cell-border' : '';
   const snakeCell = isSnake(x, y, snake) ? 'grid-cell-snake': '';
   const snackCell = areAtTheSamePosition(x, y, snack.position.x, snack.position.y) ? 'grid-cell-snack' : '';
-  return `grid-cell ${border} ${snakeCell} ${snackCell}`;
+
+  const head = snakeHead(snake);
+  const snakeHit = isGameOver && areAtTheSamePosition(x, y, head.x, head.y) ? 'grid-cell-hit' : '';
+  return `grid-cell ${border} ${snakeCell} ${snackCell} ${snakeHit}`;
 };
 
 const DIRECTIONS = {
@@ -52,7 +55,7 @@ const generateRandomPosition = () => {
   }
 };
 
-const generateRandomNumber= (min, max) =>
+const generateRandomNumber = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min);
 
 const isSnakeEating = (snake, snack) => {
@@ -66,8 +69,25 @@ const snakeHead = (snake) =>
 const snakeBody = (snake) =>
   snake.positions.slice(0, snake.positions.length - 1);
 
+const snakeTail = (snake) =>
+  snake.positions.slice(1);
+
+const isSnakeOutside = (snake) => {
+  const head = snakeHead(snake);
+  return head.x >= GRID_SIZE
+          || head.y >= GRID_SIZE
+          || head.x <= 0
+          || head.y <= 0;
+};
+
+const isEatingItself = (snake) => {
+  const head = snakeHead(snake);
+  const tail = snakeTail(snake);
+  return isSnake(head.x, head.y, tail);
+};
+
 function App() {
-  const [playground, setPlayground] = React.useState({ direction: DIRECTIONS.RIGHT });
+  const [playground, setPlayground] = React.useState({ direction: DIRECTIONS.RIGHT, isGameOver: false });
   const [snake, setSnake] = React.useState({ positions: [ generateRandomPosition() ] });
   const [snack, setSnack] = React.useState({ position: generateRandomPosition() });
 
@@ -84,6 +104,12 @@ function App() {
   });
 
   const onTick = () => {
+    isSnakeOutside(snake) || isEatingItself(snake)
+      ? setPlayground({ ...playground, isGameOver: true })
+      : moveSnake();
+  };
+
+  const moveSnake = () => {
     const isEating = isSnakeEating(snake, snack);
 
     const head = snakeHead(snake);
@@ -108,17 +134,18 @@ function App() {
   return (
     <div className="app">
       <h1>Snake</h1>
-      <Grid snake={snake} snack={snack} />
+      <Grid isGameOver={playground.isGameOver} snake={snake} snack={snack} />
     </div>
   );
 }
 
-const Grid = ({ snake, snack }) => (
+const Grid = ({ isGameOver, snake, snack }) => (
   <div>
     {
       GRID.map(y =>
         <Row
           y={y}
+          isGameOver={isGameOver}
           snake={snake}
           snack={snack}
           key={y}
@@ -127,13 +154,14 @@ const Grid = ({ snake, snack }) => (
   </div>
 );
 
-const Row = ({ y, snake, snack }) => (
+const Row = ({ y, isGameOver, snake, snack }) => (
   <div className="grid-row">
     {
       GRID.map(x =>
         <Cell
           y={y}
           x={x}
+          isGameOver={isGameOver}
           snake={snake}
           snack={snack}
           key={x}
@@ -142,8 +170,8 @@ const Row = ({ y, snake, snack }) => (
   </div>
 );
 
-const Cell = ({ y, x, snake, snack }) => (
-  <div className={getClassNames(x, y, snake, snack)} />
+const Cell = ({ x, y, isGameOver, snake, snack }) => (
+  <div className={getClassNames(x, y, isGameOver, snake, snack)} />
 );
 
 export default App;
