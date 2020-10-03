@@ -1,6 +1,6 @@
 # Notes
 
-* [classanames](https://github.com/JedWatson/classnames), [A Little Bit of JavaScript: classnames](https://dev.to/jbranchaud/a-little-bit-of-javascript-classnames-2icp)
+* [classnames package](https://github.com/JedWatson/classnames), [A Little Bit of JavaScript: classnames](https://dev.to/jbranchaud/a-little-bit-of-javascript-classnames-2icp)
 * [How to add multiple classes to a ReactJS Component?](https://stackoverflow.com/a/37073268)
 ```javascript
 const anotherClass = shouldAddAnotherClass ? 'antoherClass' : '';
@@ -19,3 +19,6 @@ useEffect(() => {
     };
 });
 ```
+* Small state vs large state
+  * [3 Rules of React State Management](https://dmitripavlutin.com/react-state-management/)
+  * [Should I use one or many state variables?](https://reactjs.org/docs/hooks-faq.html#should-i-use-one-or-many-state-variables)

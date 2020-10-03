@@ -87,7 +87,8 @@ const isEatingItself = (snake) => {
 };
 
 function App() {
-  const [playground, setPlayground] = React.useState({ direction: DIRECTIONS.RIGHT, isGameOver: false });
+  const [direction, setDirection] = React.useState(DIRECTIONS.RIGHT);
+  const [isGameOver, setIsGameOver] = React.useState(false);
   const [snake, setSnake] = React.useState({ positions: [ generateRandomPosition() ] });
   const [snack, setSnack] = React.useState({ position: generateRandomPosition() });
 
@@ -105,7 +106,7 @@ function App() {
 
   const onTick = () => {
     isSnakeOutside(snake) || isEatingItself(snake)
-      ? setPlayground({ ...playground, isGameOver: true })
+      ? setIsGameOver(true)
       : moveSnake();
   };
 
@@ -113,8 +114,7 @@ function App() {
     const isEating = isSnakeEating(snake, snack);
 
     const head = snakeHead(snake);
-    const currentDirection = playground.direction;
-    const updateDirectionFunc = DIRECTION_POSITIONS[currentDirection];
+    const updateDirectionFunc = DIRECTION_POSITIONS[direction];
     const nextPosition = updateDirectionFunc(head.x, head.y);
 
     const tail = isEating ? snake.positions : snakeBody(snake);
@@ -127,14 +127,14 @@ function App() {
   const onDirectionChanged = (event) => {
     if (KEY_MAPPER[event.keyCode]) {
       const direction = KEY_MAPPER[event.keyCode];
-      setPlayground({ direction: direction });
+      setDirection(direction);
     }
   };
 
   return (
     <div className="app">
       <h1>Snake</h1>
-      <Grid isGameOver={playground.isGameOver} snake={snake} snack={snack} />
+      <Grid isGameOver={isGameOver} snake={snake} snack={snack} />
     </div>
   );
 }
