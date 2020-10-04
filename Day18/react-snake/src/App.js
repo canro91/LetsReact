@@ -1,4 +1,5 @@
 import React from 'react';
+import { useInterval} from './hooks';
 import './App.css';
 
 const TICK_RATE = 150;
@@ -93,14 +94,10 @@ function App() {
   const [snack, setSnack] = React.useState({ position: generateRandomPosition() });
 
   React.useEffect(() => {
-    const tick = setInterval(onTick, TICK_RATE);
-
     window.addEventListener('keyup', onDirectionChanged, false);
 
     return () => {
       window.removeEventListener('keyup', onDirectionChanged);
-
-      clearInterval(tick);
     };
   });
 
@@ -109,6 +106,7 @@ function App() {
       ? setIsGameOver(true)
       : moveSnake();
   };
+  useInterval(onTick, !isGameOver ? TICK_RATE : null);
 
   const moveSnake = () => {
     const isEating = isSnakeEating(snake, snack);
