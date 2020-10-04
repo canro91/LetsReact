@@ -2,7 +2,8 @@ import React from 'react';
 import { useInterval} from './hooks';
 import './App.css';
 
-const TICK_RATE = 150;
+const TICK_RATE = 300;
+const FASTER_TICK_RATE = 100;
 const GRID = [];
 const GRID_SIZE = 35;
 for (let index = 0; index <= GRID_SIZE; index++) {
@@ -88,6 +89,7 @@ const isEatingItself = (snake) => {
 };
 
 function App() {
+  const [tick, setTick] = React.useState(TICK_RATE);
   const [direction, setDirection] = React.useState(DIRECTIONS.RIGHT);
   const [isGameOver, setIsGameOver] = React.useState(false);
   const [snake, setSnake] = React.useState({ positions: [ generateRandomPosition() ] });
@@ -101,12 +103,20 @@ function App() {
     };
   });
 
+  React.useEffect(() => {
+    window.addEventListener('keydown', onSpeedChanged, false);
+
+    return () => {
+      window.removeEventListener('keydown', onSpeedChanged);
+    };
+  });
+
   const onTick = () => {
     isSnakeOutside(snake) || isEatingItself(snake)
       ? setIsGameOver(true)
       : moveSnake();
   };
-  useInterval(onTick, !isGameOver ? TICK_RATE : null);
+  useInterval(onTick, !isGameOver ? tick : null);
 
   const moveSnake = () => {
     const isEating = isSnakeEating(snake, snack);
@@ -126,6 +136,15 @@ function App() {
     if (KEY_MAPPER[event.keyCode]) {
       const direction = KEY_MAPPER[event.keyCode];
       setDirection(direction);
+      setTick(TICK_RATE);
+    }
+  };
+
+  const onSpeedChanged = (event) => {
+    if (KEY_MAPPER[event.keyCode] && event.repeat) {
+      const direction = KEY_MAPPER[event.keyCode];
+      setDirection(direction);
+      setTick(FASTER_TICK_RATE);
     }
   };
 
