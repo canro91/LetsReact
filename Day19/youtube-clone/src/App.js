@@ -28,7 +28,7 @@ function App() {
           </Grid>
 
           <Grid item xs={8}>
-            <VideoDetails />
+            {selectedVideo && <VideoDetails video={selectedVideo} />}
           </Grid>
 
           <Grid item xs={4}>
