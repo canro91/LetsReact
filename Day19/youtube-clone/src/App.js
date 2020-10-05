@@ -9,20 +9,22 @@ function App() {
   const [selectedVideo, setSelectedVideo] = React.useState(null);
 
   const handleSubmit = (searchTerm) => {
-    console.log(searchTerm);
-
     search(searchTerm)
       .then(response => {
         const videos = response.data.items;
         setVideos(videos);
         setSelectedVideo(videos[0]);
       });
-  }
+  };
+
+  const handleVideoSelected = (video) => {
+    setSelectedVideo(video);
+  };
 
   return (
     <Grid justify="center" container spacing={10}>
       <Grid item xs={12}>
-        <Grid container spacing={10}>
+        <Grid container spacing={5}>
           <Grid item xs={12}>
             <SearchBar handleSubmit={handleSubmit} />
           </Grid>
@@ -32,7 +34,7 @@ function App() {
           </Grid>
 
           <Grid item xs={4}>
-            <VideoList />
+            <VideoList videos={videos} onVideoSelected={handleVideoSelected} />
           </Grid>
         </Grid>
       </Grid>

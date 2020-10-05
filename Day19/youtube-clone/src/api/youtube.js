@@ -5,7 +5,7 @@ const request = axios.create({
     params: {
         part: 'snippet',
         maxResults: 5,
-        key: '-- API-KEY --'
+        key: process.env.REACT_APP_API_KEY
     }
 });
 
