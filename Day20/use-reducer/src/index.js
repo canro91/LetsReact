@@ -1,58 +1,75 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function ShoppingList() {
-  const inputRef = React.useRef();
-  const [items, dispatch] = React.useReducer((state, action) => {
-    switch (action.type) {
-      case 'add':
-        return [...state, { id: state.length, name: action.name }];
+const initialTodos = [
+  {
+    id: 'a',
+    task: 'Learn React in 30 days',
+    complete: false
+  },
+  {
+    id: 'b',
+    task: 'Learn anything else in 30 days',
+    complete: false
+  }
+];
 
-      case 'remove':
-        return state.filter((_, index) => index !== action.index);
+const todoReducer = (state, action) => {
+  switch (action.type) {
+    case 'DO_TODO':
+      return state.map(todo => {
+        if (todo.id == action.id) {
+          return { ...todo, complete: true };
+        } else {
+          return todo;
+        }
+      });
 
-      case 'clear':
-        return [];
+    case 'UNDO_TODO':
+      return state.map(todo => {
+        if (todo.id == action.id) {
+          return { ...todo, complete: false };
+        } else {
+          return todo;
+        }
+      });
 
-      default:
-        return state;
-    }
-  }, []);
+    default:
+      return state;
+  }
+};
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+const App = () => {
+  const [todos, dispatch] = React.useReducer(todoReducer, initialTodos);
 
-    dispatch({
-      type: 'add',
-      name: inputRef.current.value
-    });
-
-    inputRef.current.value = '';
+  const handleChange = (todo) => {
+    const type = todo.complete ? 'UNDO_TODO' : 'DO_TODO';
+    dispatch({ type: type, id: todo.id });
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input ref={inputRef} />
-      </form>
-      <button onClick={() => dispatch({ type: 'clear' })}>Clear</button>
-      <ul>
-        {
-          items.map((item, index) => (
-            <li key={item.id}>
-              {item.name}
-              <button onClick={() => dispatch({ type: 'remove', index })}>x</button>
-            </li>
-          ))
-        }
-      </ul>
-    </>
+    <ul>
+      {
+        todos.map(todo => (
+          <li key={todo.id}>
+            <label>
+              <input type="checkbox"
+                checked={todo.complete}
+                onChange={() => handleChange(todo)}
+              />
+
+              {todo.task}
+            </label>
+          </li>
+        ))
+      }
+    </ul>
   );
-}
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <ShoppingList />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
