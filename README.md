@@ -29,3 +29,4 @@
 * Day18: Copywork of [Snake](https://github.com/taming-the-state-in-react/react-snake)
 * Day19: [YouTube clone](https://www.youtube.com/watch?v=VPVzx1ZOVuw)
 * Day20: [Examples of the useReducer Hook](https://daveceddia.com/usereducer-hook-examples/), [How to useReducer in React](https://www.robinwieruch.de/react-usereducer-hook)
+* Day21: [Expense tracker](https://www.youtube.com/watch?v=XuFDcZABiDQ)
