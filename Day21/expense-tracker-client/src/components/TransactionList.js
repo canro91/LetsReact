@@ -3,7 +3,11 @@ import { GlobalContext } from '../context/GlobalState';
 import TransactionItem from './TransactionItem';
 
 const TransactionList = () => {
-    const { transactions } = React.useContext(GlobalContext);
+    const { transactions, getTransactions } = React.useContext(GlobalContext);
+
+    React.useEffect(() => {
+        getTransactions();
+    }, []);
 
     return (
         <>
