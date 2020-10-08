@@ -28,12 +28,36 @@ export const GlobalProvider = ({ children }) => {
         }
     };
 
-    const addTransaction = (transaction) => {
-        dispatch({ type: 'ADD_TRANSACTION', transaction });
+    const addTransaction = async (transaction) => {
+        try {
+            const res = await axios.post('/api/v1/transactions', transaction);
+
+            dispatch({
+                type: 'ADD_TRANSACTION',
+                transaction: res.data.data
+            });
+        } catch (err) {
+            dispatch({
+                type: 'ERROR_TRANSACTIONS',
+                error: err.response.data.error
+            });
+        }
     };
 
-    const deleteTransaction = (id) => {
-        dispatch({ type: 'DELETE_TRANSACTION', id: id });
+    const deleteTransaction = async (id) => {
+        try {
+            await axios.delete(`/api/v1/transactions/${id}`);
+
+            dispatch({
+                type: 'DELETE_TRANSACTION',
+                id: id
+            });
+        } catch (err) {
+            dispatch({
+                type: 'ERROR_TRANSACTIONS',
+                error: err.response.data.error
+            });
+        }
     };
 
     return (

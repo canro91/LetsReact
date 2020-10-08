@@ -16,7 +16,7 @@ export default (state, action) => {
         case 'DELETE_TRANSACTION':
             return {
                 ...state,
-                transactions: state.transactions.filter(t => t.id !== action.id)
+                transactions: state.transactions.filter(t => t._id !== action.id)
             }
 
         case 'ERROR_TRANSACTIONS':
