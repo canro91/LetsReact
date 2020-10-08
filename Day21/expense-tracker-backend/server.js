@@ -12,6 +12,7 @@ const transactions = require('./routes/transaction');
 
 const app = express();
 app.use(express.json());
+app.use(morgan('dev'));
 app.use('/api/v1/transactions', transactions);
 
 const port = process.env.PORT || 5000;
