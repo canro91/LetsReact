@@ -31,3 +31,4 @@
 * Day20: [Examples of the useReducer Hook](https://daveceddia.com/usereducer-hook-examples/), [How to useReducer in React](https://www.robinwieruch.de/react-usereducer-hook)
 * Day21: [Expense tracker](https://www.youtube.com/watch?v=XuFDcZABiDQ)
 * Day22: [Backend for Day21 Expense tracker](https://www.youtube.com/watch?v=KyWaXA_NvT0)
+* Day23: [Chat with Socket.io](https://www.youtube.com/watch?v=ZwFA3YMfkoc)
