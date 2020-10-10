@@ -4,6 +4,7 @@ import io from 'socket.io-client';
 import InfoBar from './InfoBar';
 import Input from './Input';
 import MessageList from './MessageList';
+import TextContainer from './TextContainer';
 import './Chat.css';
 
 const ENDPOINT = 'http://192.168.99.100:5000';
@@ -15,6 +16,7 @@ const Chat = () => {
     const { state: { name } } = useLocation();
 
     const [allMessages, setAllMessages] = React.useState([]);
+    const [users, setUsers] = React.useState([]);
 
     React.useEffect(() => {
         socket = io(ENDPOINT);
@@ -38,7 +40,11 @@ const Chat = () => {
         socket.on('message', (message) => {
             setAllMessages([...allMessages, message]);
         });
-    }, [allMessages]);
+
+        socket.on("roomInfo", ({ users }) => {
+            setUsers(users);
+        });
+    }, []);
 
     const sendMessage = (message) => {
         setAllMessages([...allMessages, { user: name, text: message }]);
@@ -52,6 +58,7 @@ const Chat = () => {
                 <MessageList messages={allMessages} name={name} />
                 <Input sendMessage={sendMessage} />
             </div>
+            <TextContainer users={users} />
         </div>
     );
 }

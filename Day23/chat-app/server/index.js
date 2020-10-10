@@ -19,9 +19,13 @@ io.on('connect', socket => {
             return callback(error);
         }
 
-        socket.emit('message', { user: 'admin', text: `Welcome ${user.name} to ${user.room}!` });
         socket.join(user.room);
+
+        socket.emit('message', { user: 'admin', text: `Welcome ${user.name} to ${user.room}!` });
         socket.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined ${user.room}!` });
+
+        socket.to(user.room).emit('roomInfo', { room: user.room, users: getUsersInRoom(user.room) });
+        socket.emit('roomInfo', { room: user.room, users: getUsersInRoom(user.room) });
 
         callback();
     });
@@ -32,11 +36,24 @@ io.on('connect', socket => {
         socket.to(user.room).emit('message', { user: user.name, text: message });
     });
 
-    socket.on('disconnecting', (data) => {
+    // socket.on('disconnecting', (data) => {
+    //     console.log('disconneting', data);
+    //     const user = removeUser(socket.id);
+    //     if (user) {
+    //         socket.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left!` });
+
+    //         socket.to(user.room).emit('roomInfo', { room: user.room, users: getUsersInRoom(user.room) });
+    //     }
+    // });
+
+    socket.on('disconnect', (data) => {
         console.log('disconneting', data);
-        const user = users.removeUser(socket.id);
+
+        const user = removeUser(socket.id);
         if (user) {
             socket.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left!` });
+
+            socket.to(user.room).emit('roomInfo', { room: user.room, users: getUsersInRoom(user.room) });
         }
     });
 });
