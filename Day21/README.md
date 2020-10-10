@@ -48,4 +48,5 @@ const MyProvider = ({ children }) => (
 ```
 
 * Instead of passing the `dispatch` function from the `GlobalState`, pass functions that call `dispatch` instead. This way, there is no duplication of action types
+* [You probably don't need Redux: Use React Context + useReducer hook](https://dev.to/nikhilkumaran/you-probably-don-t-need-redux-use-react-context-usereducer-hook-55ej)
 * See: [useLocalStorage](https://usehooks.com/useLocalStorage/) and [Using Local Storage in React](https://typeofnan.dev/using-local-storage-in-react-with-your-own-custom-uselocalstorage-hook/)

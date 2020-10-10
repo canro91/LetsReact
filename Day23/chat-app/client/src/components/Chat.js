@@ -38,7 +38,7 @@ const Chat = () => {
 
     React.useEffect(() => {
         socket.on('message', (message) => {
-            setAllMessages([...allMessages, message]);
+            setAllMessages(messages => [ ...messages, message ]);
         });
 
         socket.on("roomInfo", ({ users }) => {
