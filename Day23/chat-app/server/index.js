@@ -3,22 +3,31 @@ const socketio = require('socket.io');
 const http = require('http');
 const colors = require('colors');
 const router = require('./router');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
 io.on('connect', socket => {
-    console.log('connect');
+    socket.on('join', (data, callback) => {
+        console.log('connect', data);
 
-    socket.on('join', (data) => {
         const { name, room } = data;
-    	console.log(data);
-        socket.broadcast.emit('broadcast', `${name} has joined ${room}`);
+        const { error, user } = addUser({ id: socket.id, name, room })
+        if (error) {
+            return callback(error);
+        }
+
+        socket.emit('message', { user: 'admin', text: `Welcome ${user.name} to ${user.room}!` });
+        socket.join(user.room);
+        socket.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined ${user.room}!` });
+
+        callback();
     });
 
-    socket.on('disconnect', (data) => {
-        console.log('disconnet', data);
+    socket.on('disconnecting', (data) => {
+        console.log('disconneting', data);
     });
 });
 
