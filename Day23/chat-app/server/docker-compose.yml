@@ -1,0 +1,18 @@
+version: "3.2"
+
+services:
+  shell:
+    image: node:12.18.2
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    command: ["/bin/sh"]
+
+  dev:
+    image: node:12.18.2
+    working_dir: /usr/src/app
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/usr/src/app
+    command: ["/bin/sh", "-c", "node index.js"]
