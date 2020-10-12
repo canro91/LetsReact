@@ -1,16 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Counter = () => {
-    const [count, setCount] = React.useState(0);
+const Counter = ({ count, dispatch }) => {
 
     const increment = () => {
-        setCount(count + 1);
+        dispatch({ type: 'INCREMENT' });
     }
 
     const decrement = () => {
-        setCount(count - 1);
+        dispatch({ type: 'DECREMENT' });
     }
 
+    const reset = () => {
+        dispatch({ type: 'RESET' });
+    }
     return (
         <div>
             <h2>Counter</h2>
@@ -20,8 +23,19 @@ const Counter = () => {
                 <button onClick={increment}>+</button>
             </div>
 
+            <button onClick={reset}>Reset</button>
         </div>
     );
 }
 
-export default Counter;
+// Without Redux
+// export default Counter;
+
+// Step 3. Connect the store with the component
+// It pulls from the state what Counter needs
+const mapStateToProps = (state) => {
+    return {
+        count: state.count
+    }
+}
+export default connect(mapStateToProps)(Counter);

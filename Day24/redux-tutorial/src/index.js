@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import App from './App';
 
 // Step 2. Create a reducer
@@ -41,9 +42,12 @@ store.dispatch({ type: 'INCREMENT' });
 store.dispatch({ type: 'DECREMENT' });
 store.dispatch({ type: 'RESET' });
 
+// Notice how it's similar to GlobalContext.Provider from Day21
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
