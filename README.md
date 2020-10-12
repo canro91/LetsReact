@@ -32,3 +32,7 @@
 * Day21: [Expense tracker](https://www.youtube.com/watch?v=XuFDcZABiDQ)
 * Day22: [Backend for Day21 Expense tracker](https://www.youtube.com/watch?v=KyWaXA_NvT0)
 * Day23: [Chat with Socket.io](https://www.youtube.com/watch?v=ZwFA3YMfkoc)
+
+## Redux
+
+* Day24: [A Complete React Redux Tutorial for Beginners](https://daveceddia.com/redux-tutorial/)
