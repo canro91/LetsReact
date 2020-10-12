@@ -1,33 +1,38 @@
 import React from 'react';
-import { DECREMENT, RESET } from './actions';
-import { increment } from './actions';
+import { increment, decrement, reset } from './actions';
 import { connect } from 'react-redux';
 
-const Counter = ({ count, dispatch }) => {
+const Counter = ({ count, increment, decrement, reset }) => {
 
     const handleIncrement = () => {
         // Step 4. Use dispatch to update state
+        // dispatch({ type: INCREMENT });
+
         // You can choose to abstract the creation of actions, too
-        dispatch(increment());
+        // dispatch(increment());
+
+        // You can choose to pass the custom functions directly instead of using dipatch
+        // See mapDispatchToProps
+        increment();
     }
 
-    const decrement = () => {
-        dispatch({ type: DECREMENT });
+    const handleDecrement = () => {
+        decrement();
     }
 
-    const reset = () => {
-        dispatch({ type: RESET });
+    const handleReset = () => {
+        reset();
     }
     return (
         <div>
             <h2>Counter</h2>
             <div>
-                <button onClick={decrement}>-</button>
+                <button onClick={handleDecrement}>-</button>
                 <span>{count}</span>
                 <button onClick={handleIncrement}>+</button>
             </div>
 
-            <button onClick={reset}>Reset</button>
+            <button onClick={handleReset}>Reset</button>
         </div>
     );
 }
@@ -42,4 +47,11 @@ const mapStateToProps = (state) => {
         count: state.count
     }
 }
-export default connect(mapStateToProps)(Counter);
+
+// It override dispatch with these custom functions
+const mapDispatchToProps = {
+    increment,
+    decrement,
+    reset
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
