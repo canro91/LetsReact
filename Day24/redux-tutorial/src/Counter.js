@@ -1,18 +1,19 @@
 import React from 'react';
+import { INCREMENT, DECREMENT, RESET } from './actions';
 import { connect } from 'react-redux';
 
 const Counter = ({ count, dispatch }) => {
 
     const increment = () => {
-        dispatch({ type: 'INCREMENT' });
+        dispatch({ type: INCREMENT });
     }
 
     const decrement = () => {
-        dispatch({ type: 'DECREMENT' });
+        dispatch({ type: DECREMENT });
     }
 
     const reset = () => {
-        dispatch({ type: 'RESET' });
+        dispatch({ type: RESET });
     }
     return (
         <div>

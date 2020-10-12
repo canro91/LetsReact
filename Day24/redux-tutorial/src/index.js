@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { INCREMENT, DECREMENT, RESET } from './actions';
 import App from './App';
 
 // Step 2. Create a reducer
@@ -15,13 +16,13 @@ const reducer = (state = initialState, action) => {
   console.log('2. I am the reducer', state, action);
 
   switch (action.type) {
-    case 'INCREMENT':
+    case INCREMENT:
       return { count: state.count + 1 };
 
-    case 'DECREMENT':
+    case DECREMENT:
       return { count: state.count - 1 };
 
-    case 'RESET':
+    case RESET:
       return { count: 0 };
 
     default:
