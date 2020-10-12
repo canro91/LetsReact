@@ -1,11 +1,14 @@
 import React from 'react';
-import { INCREMENT, DECREMENT, RESET } from './actions';
+import { DECREMENT, RESET } from './actions';
+import { increment } from './actions';
 import { connect } from 'react-redux';
 
 const Counter = ({ count, dispatch }) => {
 
-    const increment = () => {
-        dispatch({ type: INCREMENT });
+    const handleIncrement = () => {
+        // Step 4. Use dispatch to update state
+        // You can choose to abstract the creation of actions, too
+        dispatch(increment());
     }
 
     const decrement = () => {
@@ -21,7 +24,7 @@ const Counter = ({ count, dispatch }) => {
             <div>
                 <button onClick={decrement}>-</button>
                 <span>{count}</span>
-                <button onClick={increment}>+</button>
+                <button onClick={handleIncrement}>+</button>
             </div>
 
             <button onClick={reset}>Reset</button>
