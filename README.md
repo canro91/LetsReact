@@ -36,3 +36,4 @@
 ## Redux
 
 * Day24: [A Complete React Redux Tutorial for Beginners](https://daveceddia.com/redux-tutorial/)
+* DAy25: [Hacker News clone](https://www.robinwieruch.de/react-redux-tutorial)
