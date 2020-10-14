@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { doArchiveStory } from '../actions/archive';
 import { getReadableStories } from '../selectors/story';
 
 import StoriesHeader from './StoriesHeader';

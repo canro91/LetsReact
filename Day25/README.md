@@ -8,3 +8,4 @@
 ## Tools
 
 * [redux-logger](https://github.com/LogRocket/redux-logger)
+* [redux-saga](https://redux-saga.js.org/)

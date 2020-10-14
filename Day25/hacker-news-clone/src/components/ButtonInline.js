@@ -1,13 +1,14 @@
 import React from 'react';
+import Button from './Button';
 
 const ButtonInline = ({ onClick, type = 'button', children }) => (
-    <button
+    <Button
         type={type}
         className="button-inline"
         onClick={onClick}
     >
-        { children }
-    </button>
+        {children}
+    </Button>
 );
 
 export default ButtonInline;
