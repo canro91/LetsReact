@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
 }
 
 // Step 1. Create a store
-// Redux call the reducer when creating the store
+// Redux calls the reducer when creating the store
 // Notice the console.log order
 console.log('1. I am about to create the store')
 const store = createStore(reducer);
