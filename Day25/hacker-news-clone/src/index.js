@@ -6,13 +6,19 @@ import './index.css';
 import { STORY_ARCHIVE } from './constants/actionTypes';
 import { getReadableStories } from './selectors/story';
 
-// getReadableStories is like a fancy mapStateToProps
-ReactDOM.render(
-  <React.StrictMode>
-    <App
-      stories={getReadableStories(store.getState())}
-      onArchive={(id) => store.dispatch({ type: STORY_ARCHIVE, id })}
-    />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+// Here getReadableStories is like a fancy mapStateToProps
+
+function render() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App
+        stories={getReadableStories(store.getState())}
+        onArchive={(id) => store.dispatch({ type: STORY_ARCHIVE, id })}
+      />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+store.subscribe(render);
+render();
