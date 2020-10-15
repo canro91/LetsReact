@@ -7,13 +7,22 @@ import PickupSavings from './components/PickupSavings/PickupSavings';
 import PromoCode from './components/PromoCode/PromoCode';
 import Subtotal from './components/Subtotal/Subtotal';
 import TaxesFees from './components/TaxesFees/TaxesFees';
+import { connect } from 'react-redux';
+import { doPromoCodeAdded } from './actions/promoCodeActions';
 
-function App() {
+function App({ promoCode, onPromoCodeAdded  }) {
   const [subTotal, setSubTotal] = React.useState(100);
   const [pickupSavings, setPickupSavings] = React.useState(-3.85);
   const [taxes, setTaxes] = React.useState(0);
   const [estimatedTotal, setEstimatedTotal] = React.useState(0);
-  const [disablePromoCode, setDisablePromoCode] = React.useState(false);
+
+  React.useEffect(() => {
+    if (promoCode === 'DISCOUNT') {
+      setEstimatedTotal(estimatedTotal => estimatedTotal*0.9);
+
+      onPromoCodeAdded();
+    }
+  }, [promoCode, onPromoCodeAdded]);
 
   React.useEffect(() => {
     const taxes = (subTotal + pickupSavings) * 0.0875;
@@ -22,10 +31,6 @@ function App() {
     const estimatedTotal = subTotal + pickupSavings + taxes;
     setEstimatedTotal(estimatedTotal);
   }, [subTotal, pickupSavings]);
-
-  const giveDiscountHandler = () => {
-
-  };
 
   return (
     <div className='container'>
@@ -37,13 +42,22 @@ function App() {
         <EstimatedTotal total={estimatedTotal.toFixed(2)} />
         <ItemDetails quantity={1} price={100.99} />
         <hr/>
-        <PromoCode
-          giveDiscount={giveDiscountHandler}
-          disablePromoCode={disablePromoCode}
-        />
+        <PromoCode />
       </Container>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    promoCode: state.promoCode.value
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onPromoCodeAdded: () => dispatch(doPromoCodeAdded())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
