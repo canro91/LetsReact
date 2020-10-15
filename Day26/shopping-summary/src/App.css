@@ -11,3 +11,8 @@
 .purchase-card > .show-grid {
   padding-bottom: 1.5em;
 }
+
+.price-strike {
+  text-decoration-line: line-through;
+  color: grey;
+}

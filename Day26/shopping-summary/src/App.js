@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import './App.css';
 import EstimatedTotal from './components/EstimatedTotal/EstimatedTotal';
+import ItemDetails from './components/ItemDetails/ItemDetails';
 import PickupSavings from './components/PickupSavings/PickupSavings';
 import Subtotal from './components/Subtotal/Subtotal';
 import TaxesFees from './components/TaxesFees/TaxesFees';
@@ -20,6 +21,8 @@ function App() {
         <TaxesFees taxes={taxes.toFixed(2)} />
         <hr />
         <EstimatedTotal total={estimatedTotal} />
+        <ItemDetails quantity={1} price={100.99} />
+        <hr/>
       </Container>
     </div>
   );
