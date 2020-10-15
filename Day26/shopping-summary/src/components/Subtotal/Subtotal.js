@@ -5,8 +5,7 @@ const Subtotal = ({ price }) => {
     return (
         <Row className='show-grid'>
             <Col md={6}>Subtotal</Col>
-    <Col md={6}>{`$${price}`}</Col>
-
+            <Col md={6}>{`$${price}`}</Col>
         </Row>
     );
 }
