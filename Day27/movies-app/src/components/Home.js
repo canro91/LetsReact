@@ -3,14 +3,14 @@ import { Alert, Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import Loading from './Loading';
 import SearchForm from './SearchForm';
-import MoviesList from './MoviesList';
+import MovieList from './MovieList';
 
 const Home = ({ isLoading, error }) => {
 
     return (
         <Container>
             <SearchForm />
-            { isLoading ? <Loading /> : <MoviesList /> }
+            { isLoading ? <Loading /> : <MovieList /> }
             { error ? <Alert variant="warning" dismissible>{error}</Alert> : '' }
         </Container>
     );
