@@ -1,0 +1,5 @@
+const SEARCH_MOVIES = 'SEARCH_MOVIES';
+
+export {
+    SEARCH_MOVIES
+}
