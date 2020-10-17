@@ -11,10 +11,10 @@ const Navbar = () => {
             <Navigation.Collapse className="justify-content-end">
                 <Nav>
                     <Nav.Item className="mr-4">
-                        <FontAwesomeIcon icon={faImdb} size="5x" color="white" />
+                        <FontAwesomeIcon id="imdb-logo" icon={faImdb} size="5x" />
                     </Nav.Item>
                     <Nav.Item className="mr-4">
-                        <FontAwesomeIcon icon={faReact} size="5x" color="white" />
+                        <FontAwesomeIcon id="react-logo" icon={faReact} size="5x" color="white" />
                     </Nav.Item>
                 </Nav>
             </Navigation.Collapse>
