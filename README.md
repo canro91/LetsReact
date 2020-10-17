@@ -38,3 +38,4 @@
 * Day24: [A Complete React Redux Tutorial for Beginners](https://daveceddia.com/redux-tutorial/)
 * Day25: [Hacker News clone](https://www.robinwieruch.de/react-redux-tutorial)
 * Day26: [Shopping Cart Checkout](https://www.youtube.com/watch?v=KLCnTjB0w_o)
+* Day27: [Movie app](https://www.youtube.com/watch?v=Ia0WWc5dyLE&list=PLG3RxIUKLJlbDDGeeoUCkinS2DUybp_1o)
