@@ -4,3 +4,4 @@
 * [FontAwesome with React](https://fontawesome.com/how-to-use/on-the-web/using-with/react)
 * [Async middlewares with Redux](https://stackoverflow.com/questions/34570758/why-do-we-need-middleware-for-async-flow-in-redux/34599594#34599594)
 * [Where and When to Fetch Data With Redux](https://daveceddia.com/where-fetch-data-redux/)
+* [dotenv key should start with REACT_APP_](https://stackoverflow.com/questions/49579028/adding-an-env-file-to-react-project)
