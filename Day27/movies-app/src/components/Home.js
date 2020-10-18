@@ -11,7 +11,7 @@ const Home = ({ isLoading, error }) => {
         <Container>
             <SearchForm />
             { isLoading ? <Loading /> : <MovieList /> }
-            { error ? <Alert variant="warning" dismissible>{error}</Alert> : '' }
+            { error ? <Alert variant="warning">{error.message || error}</Alert> : '' }
         </Container>
     );
 }

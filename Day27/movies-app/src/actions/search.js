@@ -1,5 +1,6 @@
 import { FETCH_MOVIES_BEGIN, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_FAILURE } from './types';
-import { searchMovies } from '../api/omdb';
+import { FETCH_MOVIE_DETAILS_BEGIN, FETCH_MOVIE_DETAILS_SUCCESS } from './types';
+import { searchMovies, searchMovieDetails } from '../api/omdb';
 
 const doFetchMovies = query => {
     return dispatch => {
@@ -10,6 +11,19 @@ const doFetchMovies = query => {
             })
             .catch(error => {
                 dispatch(doFetchMoviesFailure(error))
+            });
+    };
+};
+
+const doFetchMovieDetails = id => {
+    return dispatch => {
+        dispatch(doFetchMovieDetailsBegin())
+        searchMovieDetails(id)
+            .then(data => {
+                dispatch(doFetchMovieDetailsSuccess(data))
+            })
+            .catch(error => {
+                console.log(error);
             });
     };
 };
@@ -34,6 +48,20 @@ const doFetchMoviesFailure = (error) => {
     }
 }
 
+const doFetchMovieDetailsBegin = () => {
+    return {
+        type: FETCH_MOVIE_DETAILS_BEGIN
+    };
+}
+
+const doFetchMovieDetailsSuccess = (movie) => {
+    return {
+        type: FETCH_MOVIE_DETAILS_SUCCESS,
+        payload: { movie }
+    };
+}
+
 export {
     doFetchMovies,
+    doFetchMovieDetails
 }
