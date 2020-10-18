@@ -1,4 +1,4 @@
-import { SEARCH_MOVIES_BEGIN, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_FAILURE } from '../actions/types';
+import { FETCH_MOVIES_BEGIN, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_FAILURE } from '../actions/types';
 
 const initialState = {
     movies: [],
@@ -9,21 +9,21 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SEARCH_MOVIES_BEGIN:
+        case FETCH_MOVIES_BEGIN:
             return {
                 ...state,
                 isLoading: true,
                 error: null
             };
 
-        case SEARCH_MOVIES_SUCCESS:
+        case FETCH_MOVIES_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 movies: action.payload.movies
             };
 
-        case SEARCH_MOVIES_FAILURE:
+        case FETCH_MOVIES_FAILURE:
             return {
                 ...state,
                 isLoading: false,

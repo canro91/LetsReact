@@ -1,4 +1,4 @@
-import { SEARCH_MOVIES_BEGIN as FETCH_MOVIES_BEGIN, SEARCH_MOVIES_SUCCESS as FETCH_MOVIES_SUCCESS, SEARCH_MOVIES_FAILURE as FETCH_MOVIES_FAILURE } from './types';
+import { FETCH_MOVIES_BEGIN, FETCH_MOVIES_SUCCESS, FETCH_MOVIES_FAILURE } from './types';
 import { searchMovies } from '../api/omdb';
 
 const doFetchMovies = query => {
