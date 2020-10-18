@@ -1,5 +1,8 @@
 import React from 'react';
-import { Card, Col } from 'react-bootstrap';
+import { Button, Card, Col } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const MovieItem = ({ movie }) => {
     return (
@@ -9,6 +12,11 @@ const MovieItem = ({ movie }) => {
                 <Card.Body>
                     <Card.Title className="text-light">{movie.Title} - {movie.Year}</Card.Title>
                 </Card.Body>
+                <LinkContainer to={`movie/${movie.imdbID}`}>
+                    <Button size="lg" className="mx-2 my-2">
+                        Details <FontAwesomeIcon icon={faChevronRight} />
+                    </Button>
+                </LinkContainer>
             </Card>
         </Col>
     );
