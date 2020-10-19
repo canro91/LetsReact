@@ -39,3 +39,7 @@
 * Day25: [Hacker News clone](https://www.robinwieruch.de/react-redux-tutorial)
 * Day26: [Shopping Cart Checkout](https://www.youtube.com/watch?v=KLCnTjB0w_o)
 * Day27: [Movie app](https://www.youtube.com/watch?v=Ia0WWc5dyLE&list=PLG3RxIUKLJlbDDGeeoUCkinS2DUybp_1o)
+
+## Finale
+
+* Day28: [Travel Log App](https://www.youtube.com/watch?v=5pQsl9u_10M)
