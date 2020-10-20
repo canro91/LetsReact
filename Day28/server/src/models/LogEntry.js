@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const requiredNumber = {
@@ -21,12 +21,12 @@ const logEntrySchema = new Schema({
         default: 0
     },
     latitude: {
-        requiredNumber,
+        ...requiredNumber,
         min: -90,
         max: 90
     },
     longitude: {
-        requiredNumber,
+        ...requiredNumber,
         min: -180,
         max: 180
     },

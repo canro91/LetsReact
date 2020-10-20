@@ -12,14 +12,14 @@ services:
     image: node:12.18.2
     working_dir: /usr/src/app
     ports:
-    - "5000:5000"
+    - "1337:1337"
     volumes:
     - .:/usr/src/app
-    # depends_on:
-    #   - mongo
+    depends_on:
+      - mongo
     command: ["/bin/sh", "-c", "node src/index.js"]
 
-  # mongo:
-  #   image: mongo:4.2.8
-  #   volumes:
-  #     - /data/db
+  mongo:
+    image: mongo:4.2.8
+    volumes:
+      - /data/db
