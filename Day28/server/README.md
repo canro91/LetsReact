@@ -1,5 +1,7 @@
 # Notes
 
+* [Add createdAt and updatedAt with Mongoose](https://mongoosejs.com/docs/guide.html#timestamps)
+
 ## Tools
 
 * [Helmet](https://helmetjs.github.io/)
