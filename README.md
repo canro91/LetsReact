@@ -1,5 +1,11 @@
 # Let's React: Learn React in 30 Days
 
+This is my journey to learn React in 30 days. I wanted to "be fluent" in React in 30 days. Instead of reading books from cover to cover and passively watching videos, I went through examples and walk-throughs.
+
+You can read about my progress and takeaways on [Let's React. Day 18 of 30](https://canro91.github.io/2020/10/03/LetsReactDay18/) and [Let's React. Day 27 of 30](https://canro91.github.io/2020/10/19/LetsReactDay27/).
+
+Also, you can check the resources to learn Go on my post [Let's Go, learn Go in 30 days](https://canro91.github.io/2020/07/05/LetsGoStudyPlan/)
+
 ## CSS
 
 * Day0: [CSS Layout tutorial](https://daveceddia.com/implement-a-design-with-css/)
@@ -43,3 +49,4 @@
 ## Finale
 
 * Day28: [Travel Log App](https://www.youtube.com/watch?v=5pQsl9u_10M)
+* Day29: [Todoist clone](https://www.youtube.com/watch?v=HgfA4W_VjmI)
