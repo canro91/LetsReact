@@ -12,3 +12,4 @@
 * `npx eslint --init` to setup lint. See [Setup eslint](https://sourcelevel.io/blog/how-to-setup-eslint-and-prettier-on-node)
 * [react-map-gl](https://visgl.github.io/react-map-gl/)
 * [feathericons](https://feathericons.com/)
+* [react-hook-form](https://react-hook-form.com/get-started)

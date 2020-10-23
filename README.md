@@ -43,5 +43,3 @@
 ## Finale
 
 * Day28: [Travel Log App](https://www.youtube.com/watch?v=5pQsl9u_10M)
-
-https://youtu.be/5pQsl9u_10M?t=7486

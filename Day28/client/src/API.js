@@ -5,4 +5,15 @@ const listLogEntries = async () => {
     return response.json();
 }
 
-export { listLogEntries };
+const createLogEntry = async (logEntry) => {
+    const response = await fetch(`${API_URL}/api/logs`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(logEntry)
+    });
+    return response.json();
+}
+
+export { listLogEntries, createLogEntry };
