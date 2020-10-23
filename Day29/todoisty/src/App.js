@@ -1,9 +1,11 @@
+import Content from './components/layout/Content';
+import Header from './components/layout/Header';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello, world!</h1>
-
+      <Header />
+      <Content />
     </div>
   );
 }
