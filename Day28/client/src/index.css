@@ -16,6 +16,14 @@ body {
   transform: translate(-10px, -20px);
 }
 
+.newMarker {
+  fill: red;
+  width: 24px;
+  height: 24px;
+  stroke: none;
+  transform: translate(-10px, -20px);
+}
+
 .popup {
   max-width: 300px;
 }
