@@ -8,3 +8,4 @@
 
 * [react-icons](https://react-icons.github.io/react-icons/)
 * [normalize.css](https://necolas.github.io/normalize.css/)
+* [Firebase](https://firebase.google.com/)
