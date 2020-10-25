@@ -1,7 +1,6 @@
 import React from 'react';
 import { useProjectsValue } from '../context';
-import { firebase } from '../firebase';
-import { generateId } from '../helpers';
+import { addNewProject } from '../services/projects';
 
 const AddProject = ({ shouldShow = false }) => {
     const [show, setShow] = React.useState(shouldShow);
@@ -10,14 +9,7 @@ const AddProject = ({ shouldShow = false }) => {
 
     const addProject = () => (
         projectName
-        && firebase
-            .firestore()
-            .collection('projects')
-            .add({
-                projectId: generateId(),
-                name: projectName,
-                userId: '1'
-            })
+        && addNewProject(projectName)
             .then(() => {
                 setProjects([]);
                 setProjectName('');

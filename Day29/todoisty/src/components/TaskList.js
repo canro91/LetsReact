@@ -12,10 +12,10 @@ const TaskList = () => {
 
     let projectName = '';
     if (projects && selectedProject && !collatedTasksExist(selectedProject)) {
-        projectName = getProject(projects, selectedProject).name
+        projectName = getProject(projects, selectedProject)?.name
     }
     if (collatedTasksExist(selectedProject) && selectedProject) {
-        projectName = getCollatedProject(collatedTasks, selectedProject).name
+        projectName = getCollatedProject(collatedTasks, selectedProject)?.name
     }
 
     React.useEffect(() => {

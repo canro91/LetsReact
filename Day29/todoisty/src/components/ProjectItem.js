@@ -1,19 +1,15 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 import { useProjectsValue, useSelectedProjectValue } from '../context';
-import { firebase } from '../firebase';
+import { deleteProject } from '../services/projects';
 
 const ProjectItem = ({ project }) => {
     const [showConfirm, setShowConfirm] = React.useState(false);
     const { projects, setProjects } = useProjectsValue();
     const { setSelectedProject } = useSelectedProjectValue();
 
-    const deleteProject = (docId) => {
-        firebase
-            .firestore()
-            .collection('projects')
-            .doc(docId)
-            .delete()
+    const handleDeleteProject = (docId) => {
+        deleteProject(docId)
             .then(() => {
                 setProjects([...projects]);
                 setSelectedProject('INBOX');
@@ -37,7 +33,7 @@ const ProjectItem = ({ project }) => {
                         <p>Are you sure you want to delete this project?</p>
                         <button
                             type="button"
-                            onClick={() => deleteProject(project.docId)}
+                            onClick={() => handleDeleteProject(project.docId)}
                         >
                             Delete
                         </button>
