@@ -2,6 +2,7 @@
 
 * [BEM Naming conventions](https://css-tricks.com/bem-101/)
 * [Breaking to a new row with flexbox](https://tobiasahlin.com/blog/flexbox-break-to-new-row/)
+* [Generate random id](https://gist.github.com/gordonbrander/2230317)
 
 ***
 

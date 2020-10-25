@@ -9,8 +9,12 @@ const getProject = (projects, projectId) =>
 const getCollatedProject = (projects, key) =>
   projects.find(project => project.key === key);
 
+const generateId = () =>
+  Math.random().toString(36).substr(2);
+
 export {
   collatedTasksExist,
   getProject,
-  getCollatedProject
+  getCollatedProject,
+  generateId
 }
