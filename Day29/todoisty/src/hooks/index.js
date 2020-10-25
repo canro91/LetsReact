@@ -1,7 +1,7 @@
 import React from 'react';
 import { firebase } from '../firebase';
-import moment from 'moment';
 import { collatedTasksExist } from '../helpers';
+import { addDays, today, tomorrow } from '../helpers/date';
 
 const useTasks = selectedProject => {
     const [tasks, setTasks] = React.useState([]);
@@ -16,8 +16,15 @@ const useTasks = selectedProject => {
         if (selectedProject && !collatedTasksExist(selectedProject))
             unsubscribe = unsubscribe.where('projectId', '==', selectedProject);
 
-        if (selectedProject === 'TODAY')
-            unsubscribe = unsubscribe.where('date', '==', new Date().getDate());
+        if (selectedProject === 'TODAY') {
+            unsubscribe = unsubscribe.where('date', '>=', today())
+                                     .where('date', '<', tomorrow());
+        }
+
+        if (selectedProject === 'NEXT_7') {
+            unsubscribe = unsubscribe.where('date', '>=', today())
+                                     .where('date', '<', addDays(today(), 7));
+        }
 
         if (selectedProject === 'INBOX' || selectedProject === 0)
             unsubscribe = unsubscribe.where('date', '==', '');
@@ -29,15 +36,10 @@ const useTasks = selectedProject => {
                     ...task.data()
                 };
 
-                return {
-                    ...data,
-                    date: data.date.toDate()
-                }
+                return data;
             });
 
-            const tasks = (selectedProject === 'NEXT_7')
-                ? newTasks.filter(task => moment(task.date, 'DD-MM-YYYY').diff(moment(), 'days') <= 7 && task.archived !== true)
-                : newTasks.filter(task => task.archived !== true);
+            const tasks = newTasks.filter(task => task.archived !== true);
             setTasks(tasks);
 
             const archivedTasks = newTasks.filter(task => task.archived !== false);

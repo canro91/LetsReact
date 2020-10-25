@@ -2,13 +2,13 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 const firebaseConfig = firebase.initializeApp({
-    apiKey: "AIzaSyDFuIfealA97lj-gD9KyKlZVVwwpUh4CaE",
-    authDomain: "todoisty.firebaseapp.com",
-    databaseURL: "https://todoisty.firebaseio.com",
-    projectId: "todoisty",
-    storageBucket: "todoisty.appspot.com",
-    messagingSenderId: "1088566798310",
-    appId: "1:1088566798310:web:117c40454ce2cceb079827"
+    apiKey: "AIzaSyCazyxSdXs5TOL9NB--DB3Pz_4ef80nC2g",
+    authDomain: "todoist-2c788.firebaseapp.com",
+    databaseURL: "https://todoist-2c788.firebaseio.com",
+    projectId: "todoist-2c788",
+    storageBucket: "todoist-2c788.appspot.com",
+    messagingSenderId: "442816224120",
+    appId: "1:442816224120:web:03bd22d56d06e33655468d"
 });
 
 export { firebaseConfig as firebase }
