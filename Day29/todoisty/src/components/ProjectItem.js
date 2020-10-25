@@ -30,22 +30,21 @@ const ProjectItem = ({ project }) => {
                 onClick={() => setShowConfirm(!showConfirm)}
             >
                 <FaTrashAlt />
-                {showConfirm && (
-                    <div className="project-delete-modal">
-                        <div className="project-delete-modal__inner">
-                            <p>Are you sure you want to delete this project?</p>
-                            <button
-                                type="button"
-                                onClick={() => deleteProject(project.docId)}
-                            >
-                                Delete
-                                <span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
-                            </button>
-                        </div>
-                    </div>
-                )}
             </span>
-
+            {showConfirm && (
+                <div className="project-delete-modal">
+                    <div className="project-delete-modal__inner">
+                        <p>Are you sure you want to delete this project?</p>
+                        <button
+                            type="button"
+                            onClick={() => deleteProject(project.docId)}
+                        >
+                            Delete
+                        </button>
+                        <span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
+                    </div>
+                </div>
+            )}
         </>
     );
 }

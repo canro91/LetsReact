@@ -47,6 +47,13 @@ $generic-bg: #db4c3f;
   border-radius: 3px;
 }
 
+@mixin box-shadow() {
+  -webkit-box-shadow: $generic-box-shadow;
+          box-shadow: $generic-box-shadow;
+  width: 100%;
+  border-radius: 3px;
+}
+
 @mixin va($va-align: center) {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -280,12 +287,6 @@ header {
       padding-left: 10px;
       padding-right: 15px;
       width: 100%;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-          -ms-flex-align: center;
-              align-items: center;
     }
 
     &-delete {
@@ -335,6 +336,7 @@ header {
 
   &__project {
     @include va('left');
+    flex-wrap: wrap;
   }
 
   &__dot {
@@ -419,11 +421,9 @@ header {
 /* Show Confirm Delete
   ============================================ */
 .project-delete-modal {
-  position: relative;
 
   &__inner {
-    @include box-overlay();
-    z-index: 99;
+    @include box-shadow();
     width: 200px;
     padding: 10px;
     top: 10px;
