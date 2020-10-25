@@ -4,7 +4,6 @@ import Checkbox from './Checkbox';
 
 const TaskList = () => {
     const { tasks } = useTasks('1');
-    console.log(tasks);
 
     const projectName = '';
 
@@ -12,7 +11,7 @@ const TaskList = () => {
         <div className="tasks" data-testid="tasks">
             <h2 data-testid="project-name">{projectName}</h2>
 
-            <ul className="taks__list">
+            <ul className="tasks__list">
                 {tasks.map(task => (
                     <li key={task.id}>
                         <Checkbox id={task.id} />

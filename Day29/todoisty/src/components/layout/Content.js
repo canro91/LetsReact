@@ -4,7 +4,7 @@ import TaskList from '../TaskList';
 
 const Content = () => {
     return (
-        <section>
+        <section className="content">
             <Sidebar />
             <TaskList />
         </section>

@@ -63,8 +63,8 @@ const useProjects = () => {
             .get()
             .then(snapshot => {
                 const allProjects = snapshot.docs.map(project => ({
-                    projectId: projects.id,
-                    ...project.data()
+                    ...project.data(),
+                    docId: project.id
                 }));
 
                 if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
