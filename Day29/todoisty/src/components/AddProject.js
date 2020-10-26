@@ -5,13 +5,13 @@ import { addNewProject } from '../services/projects';
 const AddProject = ({ shouldShow = false }) => {
     const [show, setShow] = React.useState(shouldShow);
     const [projectName, setProjectName] = React.useState('');
-    const { setProjects } = useProjectsValue();
+    const { projects, setProjects } = useProjectsValue();
 
     const addProject = () => (
         projectName
         && addNewProject(projectName)
             .then(() => {
-                setProjects([]);
+                setProjects([...projects]);
                 setProjectName('');
                 setShow(false);
             })
