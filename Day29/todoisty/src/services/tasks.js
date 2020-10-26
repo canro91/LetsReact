@@ -5,7 +5,7 @@ const addNewTask = (projectId, task, date) => {
         .firestore()
         .collection('tasks')
         .add({
-            archive: false,
+            archived: false,
             projectId: projectId,
             task: task,
             date: date,
@@ -13,6 +13,17 @@ const addNewTask = (projectId, task, date) => {
         });
 }
 
+const archiveTask = (id) => {
+    return firebase
+        .firestore()
+        .collection('tasks')
+        .doc(id)
+        .update({
+            archived: true
+        });
+}
+
 export {
-    addNewTask
+    addNewTask,
+    archiveTask
 }
