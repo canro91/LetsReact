@@ -1,12 +1,12 @@
 import { firebase } from '../firebase';
 
-const addNewTask = (project, task, date) => {
+const addNewTask = (projectId, task, date) => {
     return firebase
         .firestore()
         .collection('tasks')
         .add({
             archive: false,
-            project: project,
+            projectId: projectId,
             task: task,
             date: date,
             userId: '1'

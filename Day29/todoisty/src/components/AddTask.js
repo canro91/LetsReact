@@ -3,6 +3,7 @@ import { FaRegCalendarAlt, FaRegListAlt } from 'react-icons/fa';
 import { useSelectedProjectValue } from '../context';
 import { addDays, today } from '../helpers/date';
 import { addNewTask } from '../services/tasks';
+import ProjectOverlay from './ProjectOverlay';
 
 const AddTask = ({
     showAddTaskMain = true,
@@ -31,7 +32,7 @@ const AddTask = ({
         }
 
         return task && projectId &&
-            addNewTask(project, task, collatedDate || taskDate)
+            addNewTask(projectId, task, collatedDate || taskDate)
                 .then(() => {
                     setTask('');
                     setProject('');
@@ -76,12 +77,12 @@ const AddTask = ({
                             </div>
                         </>
                     )}
-                    {/* <ProjectOverlay
+                    <ProjectOverlay
                         setProject={setProject}
                         showProjectOverlay={showProjectOverlay}
                         setShowProjectOverlay={setShowProjectOverlay}
                     />
-                    <TaskDate
+                    {/*<TaskDate
                         setTaskDate={setTaskDate}
                         showTaskDate={showTaskDate}
                         setShowTaskDate={setShowTaskDate}
