@@ -1,3 +1,7 @@
+<p align="center"><a href="https://canro91.github.io/2020/10/26/ReactIn30Days/" target="_blank"><img src="https://canro91.github.io/assets/posts/2020-10-26-ReactIn30Days/LearnReact.png" width="100%" /></a></p>
+
+<hr />
+
 # Let's React: Learn React in 30 Days
 
 This is my journey to learn React in 30 days. I wanted to "be fluent" in React in 30 days. Instead of reading books from cover to cover and passively watching videos, I went through examples and walk-throughs.
